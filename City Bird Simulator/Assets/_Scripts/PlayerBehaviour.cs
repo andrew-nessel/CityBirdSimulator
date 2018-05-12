@@ -33,8 +33,6 @@ public class PlayerBehaviour : MonoBehaviour
             GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
             go.GetComponent<Rigidbody>().velocity = new Vector3(rb.velocity.x, rb.velocity.y - 2f, rb.velocity.z);
         }
-
-
     }
 
     private void FixedUpdate()
