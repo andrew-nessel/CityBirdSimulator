@@ -14,7 +14,8 @@ public class BombBehaviour : MonoBehaviour {
         rb.useGravity = true;
     }
 
-    void OnCollisionEnter(Collision collision)
+    // Update is called once per frame
+    void Update()
     {
         Vector3 point1 = this.transform.position;
         float stepSize = 1.0f / predictionStepsPerFrame;
@@ -32,7 +33,10 @@ public class BombBehaviour : MonoBehaviour {
             point1 = point2;
         }
         this.transform.position = point1;
+    }
 
+    void OnCollisionEnter(Collision collision)
+    {
         if (collision.gameObject.tag == "Target")
         {
             Debug.Log("Bomb hit a TARGET");
