@@ -86,7 +86,17 @@ public class PlayerBehaviour : MonoBehaviour
             lift = lift + 10f;
         }
 
-        transform.eulerAngles = new Vector3(0, Rtilt, 0);
+        float birdTilt = 0f;
+
+        if(tilt < 0.5f)
+        {
+            birdTilt = (45f * (.5f-tilt));
+        }else
+        {
+            birdTilt = ((tilt-.5f) * -45f);
+        }
+
+        transform.eulerAngles = new Vector3(birdTilt, Rtilt, 0f);
         Vector3 velocityV = new Vector3();
 
         float f1 = Rtilt;
@@ -143,8 +153,11 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Goal")
         {
-            collide = true;
-            Debug.Log("WE WON");
+            if(collide = false)
+            {
+                collide = true;
+                Debug.Log("WE WON");
+            }
         }
         else
         {

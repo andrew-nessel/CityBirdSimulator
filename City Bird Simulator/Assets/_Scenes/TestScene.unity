@@ -340,6 +340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1497997703}
+  horizontalSpeed: 2
+  verticalSpeed: 2
 --- !u!1 &787312794
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,10 +497,6 @@ Prefab:
     - target: {fileID: 4360471814637224, guid: 3dd95aab9fa2e37428662d7dcdc2dc3f, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1207937363909974, guid: 3dd95aab9fa2e37428662d7dcdc2dc3f, type: 2}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dd95aab9fa2e37428662d7dcdc2dc3f, type: 2}

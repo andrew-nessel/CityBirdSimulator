@@ -6,6 +6,7 @@ public class BombBehaviour : MonoBehaviour {
     public float speed = 420.0f;
     public int predictionStepsPerFrame = 6;
     public Vector3 bombVelocity;
+
     // Use this for initialization
     void Start () {
         bombVelocity = this.transform.forward * speed;

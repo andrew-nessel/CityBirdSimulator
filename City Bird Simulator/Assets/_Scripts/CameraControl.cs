@@ -8,9 +8,6 @@ public class CameraControl : MonoBehaviour {
     public float horizontalSpeed = 2f;
     public float verticalSpeed = 2f;
 
-    private float yaw;
-    private float pitch;
-
     private Vector3 initialOffset;
     private Vector3 offset;
 
@@ -18,8 +15,6 @@ public class CameraControl : MonoBehaviour {
     void Start () {
         initialOffset = transform.position - player.transform.position;
         offset = initialOffset;
-        pitch = 0f;
-        yaw = 0f;
 	}
 	
 	// Update is called once per frame
