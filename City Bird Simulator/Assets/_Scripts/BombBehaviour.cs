@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BombBehaviour : MonoBehaviour {
-<<<<<<< HEAD
-    public int predictionStepsPerFrame = 6;
-=======
-    public float speed = 1.0f;
+
     public int predictionStepsPerFrame = 12;
->>>>>>> 3cd4f4e240ea260cdc4f7cf589a1b82b8bff66f1
+
     public Vector3 bombVelocity;
     public float speed; 
     float stepSize = 0.01f;

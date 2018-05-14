@@ -41,8 +41,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             lineRenderer.useWorldSpace = true;
-            //DrawTrajectoryPath();
-            BuildTrajectoryLine(BuildTrajPath()); 
+            DrawTrajectoryPath();
+            //BuildTrajectoryLine(BuildTrajPath()); 
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -171,12 +171,8 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Goal")
         {
-<<<<<<< HEAD
-            if (collide == false)
-=======
             //Debug.Log("a problem");
             if(collide == false)
->>>>>>> 3cd4f4e240ea260cdc4f7cf589a1b82b8bff66f1
             {
                 collide = true;
                 Debug.Log("WE WON");
@@ -226,17 +222,17 @@ public class PlayerBehaviour : MonoBehaviour
     List<Vector3> BuildTrajPath()
     {
         var positions = new List<Vector3>();
-        float stepSize = 0.01f;
+        float stepSize = 1.0f / 12;
         Vector3 point1 = this.transform.position;
-        Vector3 bombVelocity = this.transform.forward * speed;
-        Vector3 predictedBombVelocity = this.transform.forward * speed;
-        for (float step = 1; step < 50; step++)
+        point1.y -= 2;
+        Vector3 bombVelocity = rb.velocity;
+        Vector3 predictedBombVelocity = this.transform.forward;
+        for (float step = 0; step < 1; step += stepSize)
         {
             positions.Add(point1);
-            predictedBombVelocity += Physics.gravity * 0.01f * .5f;
-            Vector3 point2 = point1 + bombVelocity + predictedBombVelocity;
+            predictedBombVelocity = Physics.gravity * step * step * .5f;
+            Vector3 point2 = point1 + (bombVelocity * step) + predictedBombVelocity;
             point1 = point2;
-
         }
         return positions;
     }
@@ -245,13 +241,13 @@ public class PlayerBehaviour : MonoBehaviour
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
         //How long did it take to hit the target?
-        float timeToHitTarget = 500;//CalculateTimeToHitTarget();
+        float timeToHitTarget = 15;//CalculateTimeToHitTarget();
 
         //How many segments we will have
         int maxIndex = Mathf.RoundToInt(timeToHitTarget);
 
         //Start values
-        Vector3 currentVelocity = this.transform.forward * speed;
+        Vector3 currentVelocity = rb.velocity;
         Vector3 currentPosition = this.transform.position;
 
         Vector3 newPosition = Vector3.zero;
@@ -263,7 +259,7 @@ public class PlayerBehaviour : MonoBehaviour
             lineRenderer.SetPosition(index, currentPosition);
 
             //Calculate the new position of the bullet
-            CurrentIntegrationMethod(.1f, currentPosition, currentVelocity, out newPosition, out newVelocity);
+            CurrentIntegrationMethod(0.5f, currentPosition, currentVelocity, out newPosition, out newVelocity);
 
             currentPosition = newPosition;
             currentVelocity = newVelocity;
