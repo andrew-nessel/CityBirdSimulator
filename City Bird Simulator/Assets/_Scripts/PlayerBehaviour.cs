@@ -222,9 +222,17 @@ public class PlayerBehaviour : MonoBehaviour
     List<Vector3> BuildTrajPath()
     {
         var positions = new List<Vector3>();
-        float stepSize = 1.0f / 12;
+        Vector3 start = this.transform.position;
+        Vector3 initialVelocity = rb.GetPointVelocity(start);
+        Vector3 predictedPoint = start;
+        for(float i = 0; i < 1; i+= 0.1f)
+        {
+            positions.Add(predictedPoint);
+            predictedPoint = (start + initialVelocity) + (Physics.gravity * .5f);
+        }
+
+        /*float stepSize = 1.0f / 12;
         Vector3 point1 = this.transform.position;
-        point1.y -= 2;
         Vector3 bombVelocity = rb.velocity;
         Vector3 predictedBombVelocity = this.transform.forward;
         for (float step = 0; step < 1; step += stepSize)
@@ -233,7 +241,7 @@ public class PlayerBehaviour : MonoBehaviour
             predictedBombVelocity = Physics.gravity * step * step * .5f;
             Vector3 point2 = point1 + (bombVelocity * step) + predictedBombVelocity;
             point1 = point2;
-        }
+        }*/
         return positions;
     }
     //Display the trajectory path with a line renderer
@@ -241,14 +249,15 @@ public class PlayerBehaviour : MonoBehaviour
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
         //How long did it take to hit the target?
-        float timeToHitTarget = 15;//CalculateTimeToHitTarget();
+        float timeToHitTarget = 15.0f;//CalculateTimeToHitTarget();
 
         //How many segments we will have
         int maxIndex = Mathf.RoundToInt(timeToHitTarget);
 
         //Start values
-        Vector3 currentVelocity = rb.velocity;
+        Vector3 currentVelocity = this.transform.forward * speed;
         Vector3 currentPosition = this.transform.position;
+        currentPosition.y -= 1;
 
         Vector3 newPosition = Vector3.zero;
         Vector3 newVelocity = Vector3.zero;
@@ -256,10 +265,11 @@ public class PlayerBehaviour : MonoBehaviour
         //Build the trajectory line
         for (int index = 0; index < maxIndex; index++)
         {
+            lineRenderer.positionCount = maxIndex;
             lineRenderer.SetPosition(index, currentPosition);
 
             //Calculate the new position of the bullet
-            CurrentIntegrationMethod(0.5f, currentPosition, currentVelocity, out newPosition, out newVelocity);
+            CurrentIntegrationMethod(.2f, currentPosition, currentVelocity, out newPosition, out newVelocity);
 
             currentPosition = newPosition;
             currentVelocity = newVelocity;
@@ -274,8 +284,8 @@ public class PlayerBehaviour : MonoBehaviour
         out Vector3 newVelocity)
     {
         //IntegrationMethods.EulerForward(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
-        //IntegrationMethods.Heuns(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+        IntegrationMethods.Heuns(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
         //IntegrationMethods.RungeKutta(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
-        IntegrationMethods.BackwardEuler(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+        //IntegrationMethods.BackwardEuler(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
     }
 }
