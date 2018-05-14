@@ -153,7 +153,8 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Goal")
         {
-            if(collide = false)
+            //Debug.Log("a problem");
+            if(collide == false)
             {
                 collide = true;
                 Debug.Log("WE WON");

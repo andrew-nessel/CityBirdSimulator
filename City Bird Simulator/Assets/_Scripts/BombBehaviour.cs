@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombBehaviour : MonoBehaviour {
     public float speed = 1.0f;
-    public int predictionStepsPerFrame = 6;
+    public int predictionStepsPerFrame = 12;
     public Vector3 bombVelocity;
 
     // Use this for initialization
