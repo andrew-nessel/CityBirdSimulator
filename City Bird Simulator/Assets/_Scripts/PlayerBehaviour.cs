@@ -16,6 +16,8 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 previousVelocity;
     private bool inThermal;
 
+    public LineRenderer lineRenderer;
+  
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,11 +27,22 @@ public class PlayerBehaviour : MonoBehaviour
         speed = 0.0f;
         maxspeed = 20.0f;
         inThermal = false;
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.startWidth = .1f;
+        lineRenderer.endWidth = .1f;
+        lineRenderer.startColor = Color.red;
+        lineRenderer.endColor = Color.red;
+        lineRenderer.useWorldSpace = true;
     }
 
     void Update()
     {
-
+       
+        if (Input.GetMouseButton(0))
+        {
+            //DrawTrajectoryPath();
+            BuildTrajectoryLine(BuildTrajPath()); 
+        }
         if (Input.GetMouseButtonUp(0))
         {
             GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
@@ -88,12 +101,13 @@ public class PlayerBehaviour : MonoBehaviour
 
         float birdTilt = 0f;
 
-        if(tilt < 0.5f)
+        if (tilt < 0.5f)
         {
-            birdTilt = (45f * (.5f-tilt));
-        }else
+            birdTilt = (45f * (.5f - tilt));
+        }
+        else
         {
-            birdTilt = ((tilt-.5f) * -45f);
+            birdTilt = ((tilt - .5f) * -45f);
         }
 
         transform.eulerAngles = new Vector3(birdTilt, Rtilt, 0f);
@@ -153,7 +167,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Goal")
         {
-            if(collide = false)
+            if (collide == false)
             {
                 collide = true;
                 Debug.Log("WE WON");
@@ -190,5 +204,73 @@ public class PlayerBehaviour : MonoBehaviour
         {
             //Do nothing
         }
+    }
+
+    void BuildTrajectoryLine(List<Vector3> positions)
+    {
+        lineRenderer.SetVertexCount(positions.Count);
+        for (var i = 0; i < positions.Count; ++i)
+        {
+            lineRenderer.SetPosition(i, positions[i]);
+        }
+    }
+    List<Vector3> BuildTrajPath()
+    {
+        var positions = new List<Vector3>();
+        float stepSize = 0.01f;
+        Vector3 point1 = this.transform.position;
+        Vector3 bombVelocity = this.transform.forward * speed;
+        Vector3 predictedBombVelocity = this.transform.forward * speed;
+        for (float step = 0; step < 1; step += stepSize)
+        {
+            positions.Add(point1);
+            predictedBombVelocity += Physics.gravity * stepSize;
+            Vector3 point2 = point1 + bombVelocity * stepSize;
+            point1 = point2;
+
+        }
+        return positions;
+    }
+    //Display the trajectory path with a line renderer
+    public void DrawTrajectoryPath()
+    {
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        //How long did it take to hit the target?
+        float timeToHitTarget = 500;//CalculateTimeToHitTarget();
+
+        //How many segments we will have
+        int maxIndex = Mathf.RoundToInt(timeToHitTarget);
+
+        //Start values
+        Vector3 currentVelocity = this.transform.forward * speed;
+        Vector3 currentPosition = this.transform.position;
+
+        Vector3 newPosition = Vector3.zero;
+        Vector3 newVelocity = Vector3.zero;
+
+        //Build the trajectory line
+        for (int index = 0; index < maxIndex; index++)
+        {
+            lineRenderer.SetPosition(index, currentPosition);
+
+            //Calculate the new position of the bullet
+            CurrentIntegrationMethod(.1f, currentPosition, currentVelocity, out newPosition, out newVelocity);
+
+            currentPosition = newPosition;
+            currentVelocity = newVelocity;
+        }
+    }
+    //Easier to change integration method once in this method
+    public static void CurrentIntegrationMethod(
+        float h,
+        Vector3 currentPosition,
+        Vector3 currentVelocity,
+        out Vector3 newPosition,
+        out Vector3 newVelocity)
+    {
+        //IntegrationMethods.EulerForward(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+        //IntegrationMethods.Heuns(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+        //IntegrationMethods.RungeKutta(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+        IntegrationMethods.BackwardEuler(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
     }
 }

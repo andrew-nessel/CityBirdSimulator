@@ -7,6 +7,8 @@ public class BombBehaviour : MonoBehaviour {
     public int predictionStepsPerFrame = 6;
     public Vector3 bombVelocity;
 
+    float stepSize = 0.01f;
+
     // Use this for initialization
     void Start () {
         bombVelocity = this.transform.forward * speed;
@@ -54,19 +56,5 @@ public class BombBehaviour : MonoBehaviour {
 
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        float stepSize = 0.01f;
-        Vector3 point1 = this.transform.position;
-        Vector3 predictedBombVelocity = bombVelocity;
-        for (float step = 0; step < 1; step += stepSize)
-        {
-            predictedBombVelocity += Physics.gravity * stepSize;
-            Vector3 point2 = point1 + bombVelocity * stepSize;
-            Gizmos.DrawLine(point1, point2);
-            point1 = point2;
-        }
-    }
 
 }
