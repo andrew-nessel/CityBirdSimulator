@@ -40,13 +40,17 @@ public class PlayerBehaviour : MonoBehaviour
        
         if (Input.GetMouseButton(0))
         {
+            lineRenderer.useWorldSpace = true;
             //DrawTrajectoryPath();
             BuildTrajectoryLine(BuildTrajPath()); 
         }
         if (Input.GetMouseButtonUp(0))
         {
             GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
+            // give it the same velocity as the current object
+            go.GetComponent<Rigidbody>().velocity = rb.velocity;
             go.GetComponent<BombBehaviour>().speed = speed;
+            lineRenderer.useWorldSpace = false;
         }
     }
 
@@ -221,11 +225,11 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 point1 = this.transform.position;
         Vector3 bombVelocity = this.transform.forward * speed;
         Vector3 predictedBombVelocity = this.transform.forward * speed;
-        for (float step = 0; step < 1; step += stepSize)
+        for (float step = 1; step < 50; step++)
         {
             positions.Add(point1);
-            predictedBombVelocity += Physics.gravity * stepSize;
-            Vector3 point2 = point1 + bombVelocity * stepSize;
+            predictedBombVelocity += Physics.gravity * 0.01f * .5f;
+            Vector3 point2 = point1 + bombVelocity + predictedBombVelocity;
             point1 = point2;
 
         }

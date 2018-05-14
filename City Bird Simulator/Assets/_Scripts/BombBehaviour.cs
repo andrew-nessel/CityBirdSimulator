@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BombBehaviour : MonoBehaviour {
-    public float speed = 1.0f;
     public int predictionStepsPerFrame = 6;
     public Vector3 bombVelocity;
-
+    public float speed; 
     float stepSize = 0.01f;
+    public Rigidbody r;
 
     // Use this for initialization
     void Start () {
-        bombVelocity = this.transform.forward * speed;
+        r = GetComponent<Rigidbody>();
+        speed = GetComponent<PlayerBehaviour>().speed;
+        r.velocity = GetComponent<PlayerBehaviour>().rb.velocity;
+        float velocity = ((Mathf.Abs(speed) + 1) * 2);
+        bombVelocity = GetComponent<PlayerBehaviour>().transform.forward * velocity;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
     }
