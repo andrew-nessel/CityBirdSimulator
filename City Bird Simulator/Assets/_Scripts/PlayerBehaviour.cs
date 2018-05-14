@@ -171,7 +171,12 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Goal")
         {
+<<<<<<< HEAD
             if (collide == false)
+=======
+            //Debug.Log("a problem");
+            if(collide == false)
+>>>>>>> 3cd4f4e240ea260cdc4f7cf589a1b82b8bff66f1
             {
                 collide = true;
                 Debug.Log("WE WON");

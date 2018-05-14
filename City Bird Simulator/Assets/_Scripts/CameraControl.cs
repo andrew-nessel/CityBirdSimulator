@@ -8,12 +8,12 @@ public class CameraControl : MonoBehaviour {
     public float horizontalSpeed = 2f;
     public float verticalSpeed = 2f;
 
-    private Vector3 initialOffset;
+    public Vector3 initialOffset;
     private Vector3 offset;
 
     // Use this for initialization
     void Start () {
-        initialOffset = transform.position - player.transform.position;
+        //initialOffset = transform.position - player.transform.position;
         offset = initialOffset;
 	}
 	
