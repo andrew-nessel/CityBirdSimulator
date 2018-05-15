@@ -249,10 +249,10 @@ public class PlayerBehaviour : MonoBehaviour
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
         //How long did it take to hit the target?
-        float timeToHitTarget = 15.0f;//CalculateTimeToHitTarget();
+        float timeToHitTarget = 20.0f;//CalculateTimeToHitTarget();
 
         //How many segments we will have
-        int maxIndex = Mathf.RoundToInt(timeToHitTarget);
+        int maxIndex = Mathf.RoundToInt(timeToHitTarget) * 4;
 
         //Start values
         Vector3 currentVelocity = this.transform.forward * speed;
@@ -269,7 +269,7 @@ public class PlayerBehaviour : MonoBehaviour
             lineRenderer.SetPosition(index, currentPosition);
 
             //Calculate the new position of the bullet
-            CurrentIntegrationMethod(.2f, currentPosition, currentVelocity, out newPosition, out newVelocity);
+            CurrentIntegrationMethod((Time.fixedDeltaTime) , currentPosition, currentVelocity, out newPosition, out newVelocity);
 
             currentPosition = newPosition;
             currentVelocity = newVelocity;

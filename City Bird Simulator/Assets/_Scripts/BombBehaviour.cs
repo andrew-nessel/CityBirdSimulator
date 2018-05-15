@@ -25,6 +25,22 @@ public class BombBehaviour : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        //Start values
+        Vector3 currentVelocity = this.transform.forward * speed;
+        Vector3 currentPosition = this.transform.position;
+
+        Vector3 newPosition = Vector3.zero;
+        Vector3 newVelocity = Vector3.zero;
+        for (float index = 0; index < Time.fixedDeltaTime; index += (Time.fixedDeltaTime / 6))
+        {
+            //Calculate the new position of the bullet
+            CurrentIntegrationMethod((Time.fixedDeltaTime / 6), currentPosition, currentVelocity, out newPosition, out newVelocity);
+
+            currentPosition = newPosition;
+            currentVelocity = newVelocity;
+       }
+        this.transform.position = currentPosition;
+        /*
         Vector3 point1 = this.transform.position;
         float stepSize = 1.0f / predictionStepsPerFrame;
         for (float step = 0; step < 1; step += stepSize)
@@ -40,7 +56,7 @@ public class BombBehaviour : MonoBehaviour {
             }
             point1 = point2;
         }
-        this.transform.position = point1;
+        this.transform.position = point1;*/
     }
 
     void OnCollisionEnter(Collision collision)
@@ -61,6 +77,18 @@ public class BombBehaviour : MonoBehaviour {
         }
 
     }
-
+    //Easier to change integration method once in this method
+    public static void CurrentIntegrationMethod(
+        float h,
+        Vector3 currentPosition,
+        Vector3 currentVelocity,
+        out Vector3 newPosition,
+        out Vector3 newVelocity)
+    {
+        //IntegrationMethods.EulerForward(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+        IntegrationMethods.Heuns(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+        //IntegrationMethods.RungeKutta(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+        //IntegrationMethods.BackwardEuler(h, currentPosition, currentVelocity, out newPosition, out newVelocity);
+    }
 
 }
