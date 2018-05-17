@@ -31,15 +31,16 @@ public class BombBehaviour : MonoBehaviour {
 
         Vector3 newPosition = Vector3.zero;
         Vector3 newVelocity = Vector3.zero;
-        for (float index = 0; index < Time.fixedDeltaTime; index += (Time.fixedDeltaTime / 6))
-        {
+        //for (float index = 0; index < Time.fixedDeltaTime; index += (Time.fixedDeltaTime / 6))
+        //{
             //Calculate the new position of the bullet
-            CurrentIntegrationMethod((Time.fixedDeltaTime / 6), currentPosition, currentVelocity, out newPosition, out newVelocity);
+            CurrentIntegrationMethod((Time.fixedDeltaTime), currentPosition, currentVelocity, out newPosition, out newVelocity);
 
             currentPosition = newPosition;
             currentVelocity = newVelocity;
-       }
+      // }
         this.transform.position = currentPosition;
+        //r.velocity = currentVelocity;
         /*
         Vector3 point1 = this.transform.position;
         float stepSize = 1.0f / predictionStepsPerFrame;

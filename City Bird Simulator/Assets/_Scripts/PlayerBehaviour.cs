@@ -48,7 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
             // give it the same velocity as the current object
-            go.GetComponent<Rigidbody>().velocity = rb.velocity;
+            //go.GetComponent<Rigidbody>().velocity = rb.velocity;
             go.GetComponent<BombBehaviour>().speed = speed;
             lineRenderer.useWorldSpace = false;
         }
