@@ -10,14 +10,15 @@ public class BombBehaviour : MonoBehaviour {
     public float speed; 
     float stepSize = 0.01f;
     public Rigidbody r;
+    public GameObject GameManager;
 
     // Use this for initialization
     void Start () {
         r = GetComponent<Rigidbody>();
-        speed = GetComponent<PlayerBehaviour>().speed;
-        r.velocity = GetComponent<PlayerBehaviour>().rb.velocity;
+        //speed = GetComponent<PlayerBehaviour>().speed;
+        //r.velocity = GetComponent<PlayerBehaviour>().rb.velocity;
         float velocity = ((Mathf.Abs(speed) + 1) * 2);
-        bombVelocity = GetComponent<PlayerBehaviour>().transform.forward * velocity;
+        //bombVelocity = GetComponent<PlayerBehaviour>().transform.forward * velocity;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
     }
@@ -58,6 +59,12 @@ public class BombBehaviour : MonoBehaviour {
             point1 = point2;
         }
         this.transform.position = point1;*/
+
+        if (this.transform.position.y < -100)
+        {
+            Destroy(gameObject);
+            GameManager.GetComponent<GameManagerBehaviour>().bombActive = false;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -66,6 +73,8 @@ public class BombBehaviour : MonoBehaviour {
         {
             Debug.Log("Bomb hit a TARGET");
             Destroy(gameObject);
+            GameManager.GetComponent<GameManagerBehaviour>().bombActive = false;
+            GameManager.GetComponent<GameManagerBehaviour>().UpdateTargets(GameManager.GetComponent<GameManagerBehaviour>().Targets + 1);
         }
         else if (collision.gameObject.tag == "Bomb")
         {
@@ -75,6 +84,7 @@ public class BombBehaviour : MonoBehaviour {
         {
             Debug.Log("Bomb hit something else");
             Destroy(gameObject);
+            GameManager.GetComponent<GameManagerBehaviour>().bombActive = false;
         }
 
     }

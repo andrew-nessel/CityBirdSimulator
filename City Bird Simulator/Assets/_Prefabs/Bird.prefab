@@ -285,3 +285,4 @@ MonoBehaviour:
   maxspeed: 0
   Bomb: {fileID: 1001041194971308, guid: 5e8f6392703af564e9a22599194fd398, type: 2}
   rb: {fileID: 0}
+  lineRenderer: {fileID: 0}

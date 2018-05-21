@@ -52,5 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocation: {x: 0, y: 20, z: 0}
-  playerObject: {fileID: 1207937363909974, guid: 3dd95aab9fa2e37428662d7dcdc2dc3f,
-    type: 2}
+  player: {fileID: 0}
+  camera: {fileID: 0}
+  PauseMenu: {fileID: 0}
+  EndMenu: {fileID: 0}
+  HUDUI: {fileID: 0}
+  isPaused: 0
+  isHUD: 0

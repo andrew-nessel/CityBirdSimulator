@@ -9,8 +9,10 @@ public class PlayerBehaviour : MonoBehaviour
     public float tilt;
     public float Rtilt;
     public bool collide = false;
+    public bool winCondition = false;
     public float maxspeed;
     public GameObject Bomb;
+    public GameObject GameManager;
 
     public Rigidbody rb;
     private Vector3 previousVelocity;
@@ -37,20 +39,30 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-       
-        if (Input.GetMouseButton(0))
+        if (!GameManager.GetComponent<GameManagerBehaviour>().isPaused)
         {
-            lineRenderer.useWorldSpace = true;
-            DrawTrajectoryPath();
-            //BuildTrajectoryLine(BuildTrajPath()); 
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
-            // give it the same velocity as the current object
-            //go.GetComponent<Rigidbody>().velocity = rb.velocity;
-            go.GetComponent<BombBehaviour>().speed = speed;
-            lineRenderer.useWorldSpace = false;
+            if(GameManager.GetComponent<GameManagerBehaviour>().CanDropBomb())
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    lineRenderer.useWorldSpace = true;
+                    DrawTrajectoryPath();
+                    //BuildTrajectoryLine(BuildTrajPath()); 
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
+                    // give it the same velocity as the current object
+                    //go.GetComponent<Rigidbody>().velocity = rb.velocity;
+                    go.GetComponent<BombBehaviour>().speed = speed;
+                    go.GetComponent<BombBehaviour>().GameManager = GameManager;
+                    lineRenderer.useWorldSpace = false;
+
+                    GameManager.GetComponent<GameManagerBehaviour>().UpdateBombs(GameManager.GetComponent<GameManagerBehaviour>().Bombs - 1);
+                    GameManager.GetComponent<GameManagerBehaviour>().bombActive = true;
+                }
+            }
+
         }
     }
 
@@ -175,6 +187,7 @@ public class PlayerBehaviour : MonoBehaviour
             if(collide == false)
             {
                 collide = true;
+                winCondition = true;
                 Debug.Log("WE WON");
             }
         }
