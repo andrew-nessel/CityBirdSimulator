@@ -1,8 +1,8 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/mzhon/Desktop/CityBirdSimulator/CityBirdSimulator.exe
+C:/Users/Andrew Nessel/Documents/repo/CityBirdSimulator/City Bird Simulator/Builds/CityBirdSimulatorv0.2/CityBirdSimulatorv0.2.exe
 SceneListBegin?
-Assets/_Scenes/Level1.unity
+Assets/_Scenes/Demo_Level.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -49,8 +49,8 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 fefc3f57049dc353bbfccde024a997df Assembly-CSharp.dll:.CameraControl
-c46efe15837ea419efea3ef3e56d395d Assembly-CSharp.dll:.BombBehaviour
-ae87c352523017df65255c936885447b Assembly-CSharp.dll:.GameManagerBehaviour
+855da5ecce6177db365dfe116b32b1ba Assembly-CSharp.dll:.BombBehaviour
+4781c22139a9996c0cbedaa4d6a9a92c Assembly-CSharp.dll:.GameManagerBehaviour
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -118,7 +118,6 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ThermalBehaviour
-32e8fe00b63ed946490b898f6024a2f2 Facebook.Unity.Settings.dll:Facebook.Unity.Settings.FacebookSettings
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -150,5 +149,8 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-3619420d01f0329729d0bca686dc602a Assembly-CSharp.dll:.PlayerBehaviour
+0c8f866ec1f75b0541a684889428a1d0 Assembly-CSharp.dll:.PlayerBehaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.IntegrationMethods
+1f5e5d32a397a14ea2238e622327a549 Assembly-CSharp.dll:.PauseScript
+722e91bded6903121f1d50e5889cc26b Assembly-CSharp.dll:.EndMenuScript
+ed44dc35cb22274a246c4e2da87b02ad Assembly-CSharp.dll:.HUDUIScript
