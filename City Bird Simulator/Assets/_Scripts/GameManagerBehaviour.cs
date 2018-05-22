@@ -47,11 +47,13 @@ public class GameManagerBehaviour : MonoBehaviour {
             {
                 if (isPaused)
                 {
+                    isPaused = false;
                     Screen.lockCursor = true;
                     PauseMenu.GetComponent<PauseScript>().Resume();
                 }
                 else
                 {
+                    isPaused = true;
                     Screen.lockCursor = false;
                     PauseMenu.GetComponent<PauseScript>().Pause();
                 }
