@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; // neded in order to load scenes
 
 public class PauseScript : MonoBehaviour {
 
@@ -26,7 +27,8 @@ public class PauseScript : MonoBehaviour {
 
     public void Menu()
     {
-
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Quit()

@@ -52,6 +52,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 fefc3f57049dc353bbfccde024a997df Assembly-CSharp.dll:.CameraControl
 855da5ecce6177db365dfe116b32b1ba Assembly-CSharp.dll:.BombBehaviour
 4781c22139a9996c0cbedaa4d6a9a92c Assembly-CSharp.dll:.GameManagerBehaviour
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MainMenu
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -155,4 +156,3 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 722e91bded6903121f1d50e5889cc26b Assembly-CSharp.dll:.EndMenuScript
 0c8f866ec1f75b0541a684889428a1d0 Assembly-CSharp.dll:.PlayerBehaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.IntegrationMethods
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MainMenu

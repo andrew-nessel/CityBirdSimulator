@@ -41,7 +41,7 @@ public class EndMenuScript : MonoBehaviour {
 
     public void Menu()
     {
-
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Quit()
