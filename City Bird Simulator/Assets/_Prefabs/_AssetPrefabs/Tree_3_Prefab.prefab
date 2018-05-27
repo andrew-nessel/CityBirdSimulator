@@ -68,6 +68,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4654788632147458}
+  - component: {fileID: 64059681030771692}
   m_Layer: 0
   m_Name: Tree_3_Textured
   m_TagString: Untagged
@@ -92,7 +93,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1909931580860048
 GameObject:
   m_ObjectHideFlags: 1
@@ -265,7 +266,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813363424181502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -434,6 +435,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407397605918450}
   m_Mesh: {fileID: 4300004, guid: 2bbcf8182496f6d45898237f2feba940, type: 3}
+--- !u!64 &64059681030771692
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1807029876550504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: f9aa099ae0c2e4f40b7f3dce870a5a89, type: 3}
 --- !u!64 &64509130364088062
 MeshCollider:
   m_ObjectHideFlags: 1

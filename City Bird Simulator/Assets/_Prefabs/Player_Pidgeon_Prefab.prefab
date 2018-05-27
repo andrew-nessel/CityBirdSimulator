@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4858181751243258}
   m_Layer: 0
   m_Name: Player_Pidgeon_Prefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 1700691600287856}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.78585786, y: 0.78585786, z: 0.78585786}
   m_Children:
   - {fileID: 4908408783550646}
   m_Father: {fileID: 4059855898811438}
@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1296109852950266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -156.5, y: 18.620003, z: -60.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4732305702708708}
@@ -294,8 +294,10 @@ MonoBehaviour:
   tilt: 0
   Rtilt: 0
   collide: 0
+  winCondition: 0
   maxspeed: 0
   Bomb: {fileID: 1001041194971308, guid: 5e8f6392703af564e9a22599194fd398, type: 2}
+  GameManager: {fileID: 0}
   rb: {fileID: 0}
   lineRenderer: {fileID: 0}
 --- !u!114 &114650196038981858

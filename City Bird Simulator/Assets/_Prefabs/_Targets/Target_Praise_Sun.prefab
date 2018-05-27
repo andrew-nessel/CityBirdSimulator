@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33152758344924270}
   - component: {fileID: 23910955433014016}
   - component: {fileID: 136407989993241902}
+  - component: {fileID: 114737119962375738}
   m_Layer: 0
   m_Name: Human_Mesh
   m_TagString: Target
@@ -113,6 +114,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1317673634506850}
   m_Mesh: {fileID: 4300000, guid: e2bb9ec5f8d52314bb8145b30e93fe69, type: 3}
+--- !u!114 &114737119962375738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317673634506850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50063afdba524124f940b267cf76c3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136407989993241902
 CapsuleCollider:
   m_ObjectHideFlags: 1
