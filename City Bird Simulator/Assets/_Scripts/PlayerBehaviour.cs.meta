@@ -1,11 +1,17 @@
 fileFormatVersion: 2
 guid: e996c98d2c2d26b44921316ad2f8d81b
-timeCreated: 1525671658
-licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Bomb: {instanceID: 0}
+  - GameManager: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - lineRenderer: {instanceID: 0}
+  - pigeonCoo: {fileID: 8300000, guid: 8917b964c6749aa4a82d1d8a423e36ac, type: 3}
+  - Squawk: {instanceID: 0}
+  - pigeon: {fileID: 8300000, guid: 513fd9c13e0ef944292f7563b0e5ba7f, type: 3}
+  - caw: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

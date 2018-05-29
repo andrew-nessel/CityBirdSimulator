@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-
     public float speed;
     public float tilt;
     public float Rtilt;
@@ -19,9 +18,22 @@ public class PlayerBehaviour : MonoBehaviour
     private bool inThermal;
 
     public LineRenderer lineRenderer;
-  
+
+    //Sound Variables
+    public AudioClip pigeonCoo;
+    public AudioClip Squawk;
+    public AudioClip pigeon;
+    public AudioClip caw;
+
+    public Random rand;
+    private AudioSource source;
+    private float lowPitchRange = .75F;
+    private float highPitchRange = 1.5F;
+    private float volLowRange = .5f;
+    private float volHighRange = 1.0f;
     void Start()
     {
+        rand = new Random();
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         tilt = 0.5f;
@@ -35,6 +47,7 @@ public class PlayerBehaviour : MonoBehaviour
         lineRenderer.startColor = Color.red;
         lineRenderer.endColor = Color.red;
         lineRenderer.useWorldSpace = true;
+        source = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -51,6 +64,7 @@ public class PlayerBehaviour : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
+                    //source.pitch = Random.Range(lowPitchRange, highPitchRange);
                     GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
                     // give it the same velocity as the current object
                     //go.GetComponent<Rigidbody>().velocity = rb.velocity;
@@ -62,7 +76,17 @@ public class PlayerBehaviour : MonoBehaviour
                     GameManager.GetComponent<GameManagerBehaviour>().bombActive = true;
                 }
             }
-
+            int playSound = Random.Range(0, 500);
+            float vol = Random.Range(volLowRange, volHighRange);
+            if ( playSound < 1 && speed < 5f)
+            {
+                source.PlayOneShot(pigeonCoo, vol);
+            }
+            else if(playSound < 3 && speed < 5f)
+            {
+                source.PlayOneShot(pigeon, vol);
+            }
+            
         }
     }
 
