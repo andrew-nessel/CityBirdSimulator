@@ -12,8 +12,18 @@ public class BombBehaviour : MonoBehaviour {
     public Rigidbody r;
     public GameObject GameManager;
 
+    //Sound variables
+    public AudioClip shootSound;
+    public AudioClip splatSound;
+    private AudioSource source;
+    private float volLowRange = .5f;
+    private float volHighRange = 1.0f;
+    private float lowPitchRange = .75F;
+    private float highPitchRange = 1.5F;
+
     // Use this for initialization
     void Start () {
+        source = GetComponent<AudioSource>();
         r = GetComponent<Rigidbody>();
         //speed = GetComponent<PlayerBehaviour>().speed;
         //r.velocity = GetComponent<PlayerBehaviour>().rb.velocity;
@@ -21,6 +31,10 @@ public class BombBehaviour : MonoBehaviour {
         //bombVelocity = GetComponent<PlayerBehaviour>().transform.forward * velocity;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
+
+        //Play sound upon
+        float vol = Random.Range(volLowRange, volHighRange);
+        source.PlayOneShot(shootSound, vol);
     }
 
     // Update is called once per frame
@@ -86,6 +100,10 @@ public class BombBehaviour : MonoBehaviour {
             Destroy(gameObject);
             GameManager.GetComponent<GameManagerBehaviour>().bombActive = false;
         }
+        source.Stop();
+        source.pitch = Random.Range(lowPitchRange, highPitchRange);
+        float vol = Random.Range(volLowRange, volHighRange);
+        source.PlayOneShot(splatSound, vol);
 
     }
     //Easier to change integration method once in this method

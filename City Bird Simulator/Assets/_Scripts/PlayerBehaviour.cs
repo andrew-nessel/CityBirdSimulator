@@ -76,13 +76,14 @@ public class PlayerBehaviour : MonoBehaviour
                     GameManager.GetComponent<GameManagerBehaviour>().bombActive = true;
                 }
             }
-            int playSound = Random.Range(0, 500);
+            int playSound = Random.Range(0, 2000);
+            source.pitch = Random.Range(lowPitchRange, highPitchRange);
             float vol = Random.Range(volLowRange, volHighRange);
-            if ( playSound < 1 && speed < 5f)
+            if ( playSound < 1 && speed < 5f && !source.isPlaying)
             {
                 source.PlayOneShot(pigeonCoo, vol);
             }
-            else if(playSound < 3 && speed < 5f)
+            else if(playSound < 3 && speed < 5f &&!source.isPlaying)
             {
                 source.PlayOneShot(pigeon, vol);
             }
