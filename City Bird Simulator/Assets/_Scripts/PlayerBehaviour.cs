@@ -73,7 +73,11 @@ public class PlayerBehaviour : MonoBehaviour
                     lineRenderer.useWorldSpace = false;
 
                     GameManager.GetComponent<GameManagerBehaviour>().UpdateBombs(GameManager.GetComponent<GameManagerBehaviour>().Bombs - 1);
-                    GameManager.GetComponent<GameManagerBehaviour>().bombActive = true;
+                    GameManager.GetComponent<GameManagerBehaviour>().activateBomb();
+                    GameObject bombCam = GameManager.GetComponent<GameManagerBehaviour>().BombCamera;
+                    bombCam.transform.rotation = rb.rotation;
+                    bombCam.transform.position = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
+                    go.GetComponent<BombBehaviour>().BombCamera = bombCam;
                 }
             }
             int playSound = Random.Range(0, 2000);

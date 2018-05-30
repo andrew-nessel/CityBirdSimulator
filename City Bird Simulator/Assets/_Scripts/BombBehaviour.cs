@@ -11,6 +11,7 @@ public class BombBehaviour : MonoBehaviour {
     float stepSize = 0.01f;
     public Rigidbody r;
     public GameObject GameManager;
+    public GameObject BombCamera;
 
     //Sound variables
     public AudioClip shootSound;
@@ -38,7 +39,7 @@ public class BombBehaviour : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Start values
         Vector3 currentVelocity = this.transform.forward * speed;
@@ -55,6 +56,10 @@ public class BombBehaviour : MonoBehaviour {
             currentVelocity = newVelocity;
       // }
         this.transform.position = currentPosition;
+    
+        BombCamera.transform.position = currentPosition - new Vector3(transform.forward.x * 10, -1f, transform.forward.z * 10);
+
+
         //r.velocity = currentVelocity;
         /*
         Vector3 point1 = this.transform.position;
@@ -77,7 +82,7 @@ public class BombBehaviour : MonoBehaviour {
         if (this.transform.position.y < -100)
         {
             Destroy(gameObject);
-            GameManager.GetComponent<GameManagerBehaviour>().bombActive = false;
+            GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
         }
     }
 
@@ -87,7 +92,7 @@ public class BombBehaviour : MonoBehaviour {
         {
             Debug.Log("Bomb hit a TARGET");
             Destroy(gameObject);
-            GameManager.GetComponent<GameManagerBehaviour>().bombActive = false;
+            GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
             GameManager.GetComponent<GameManagerBehaviour>().UpdateTargets(GameManager.GetComponent<GameManagerBehaviour>().Targets + 1);
         }
         else if (collision.gameObject.tag == "Bomb")
@@ -98,7 +103,7 @@ public class BombBehaviour : MonoBehaviour {
         {
             Debug.Log("Bomb hit something else");
             Destroy(gameObject);
-            GameManager.GetComponent<GameManagerBehaviour>().bombActive = false;
+            GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
         }
         source.Stop();
         source.pitch = Random.Range(lowPitchRange, highPitchRange);

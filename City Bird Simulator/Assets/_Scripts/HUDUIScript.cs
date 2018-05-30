@@ -8,6 +8,7 @@ public class HUDUIScript : MonoBehaviour {
     
     public Text BombCounterText;
     public Text TargetCounterText;
+    public GameObject BombCameraPanel;
 
     // Use this for initialization
     void Start () {
@@ -27,5 +28,14 @@ public class HUDUIScript : MonoBehaviour {
     public void UpdateTargetCounter(int num)
     {
         TargetCounterText.text = num.ToString();
+    }
+
+    public void turnOffBombCamera()
+    {
+        BombCameraPanel.SetActive(false);
+    }
+    public void turnOnBombCamera()
+    {
+        BombCameraPanel.SetActive(true);
     }
 }

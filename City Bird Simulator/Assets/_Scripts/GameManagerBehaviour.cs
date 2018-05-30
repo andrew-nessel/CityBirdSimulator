@@ -10,6 +10,7 @@ public class GameManagerBehaviour : MonoBehaviour {
     public GameObject PauseMenu;
     public GameObject EndMenu;
     public GameObject HUDUI;
+    public GameObject BombCamera;
     public bool isPaused = false;
     public bool isHUD = false;
     public bool bombActive = false;
@@ -96,6 +97,20 @@ public class GameManagerBehaviour : MonoBehaviour {
     public bool CanDropBomb()
     {
         return ((!bombActive) && (Bombs > 0));
+    }
+
+    public void deactivateBomb()
+    {
+        bombActive = false;
+        //BombCamera.SetActive(false);
+        HUDUI.GetComponent<HUDUIScript>().turnOffBombCamera();
+    }
+
+    public void activateBomb()
+    {
+        bombActive = true;
+        BombCamera.SetActive(true);
+        HUDUI.GetComponent<HUDUIScript>().turnOnBombCamera();
     }
 
 }
