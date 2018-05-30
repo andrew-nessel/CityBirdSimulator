@@ -27,8 +27,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Random rand;
     private AudioSource source;
-    private float lowPitchRange = .75F;
-    private float highPitchRange = 1.5F;
+    private float lowPitchRange = .9F;
+    private float highPitchRange = 1.25F;
     private float volLowRange = .5f;
     private float volHighRange = 1.0f;
     void Start()
@@ -80,17 +80,7 @@ public class PlayerBehaviour : MonoBehaviour
                     go.GetComponent<BombBehaviour>().BombCamera = bombCam;
                 }
             }
-            int playSound = Random.Range(0, 2000);
-            source.pitch = Random.Range(lowPitchRange, highPitchRange);
-            float vol = Random.Range(volLowRange, volHighRange);
-            if ( playSound < 1 && speed < 5f && !source.isPlaying)
-            {
-                source.PlayOneShot(pigeonCoo, vol);
-            }
-            else if(playSound < 3 && speed < 5f &&!source.isPlaying)
-            {
-                source.PlayOneShot(pigeon, vol);
-            }
+            
             
         }
     }
@@ -201,6 +191,18 @@ public class PlayerBehaviour : MonoBehaviour
         previousVelocity = rb.velocity;
 
         rb.velocity = (velocityV);
+
+        int playSound = Random.Range(0, 2000);
+        source.pitch = Random.Range(lowPitchRange, highPitchRange);
+        float vol = Random.Range(volLowRange, volHighRange);
+        if (playSound < 1 && speed < maxspeed / 2 && !source.isPlaying)
+        {
+            source.PlayOneShot(pigeonCoo, vol);
+        }
+        else if (playSound < 1 && speed < maxspeed && !source.isPlaying && speed > maxspeed / 2)
+        {
+            source.PlayOneShot(pigeon, vol);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
