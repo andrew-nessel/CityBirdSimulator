@@ -12,7 +12,8 @@ public class BombBehaviour : MonoBehaviour {
     public Rigidbody r;
     public GameObject GameManager;
     public GameObject BombCamera;
-
+	public GameObject SplatParticles;
+	
     //Sound variables
     public AudioClip shootSound;
     public AudioClip splatSound;
@@ -91,6 +92,7 @@ public class BombBehaviour : MonoBehaviour {
         if (collision.gameObject.tag == "Target")
         {
             Debug.Log("Bomb hit a TARGET");
+			Instantiate(this.SplatParticles, this.transform.position, Quaternion.identity);
             Destroy(gameObject);
             GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
             GameManager.GetComponent<GameManagerBehaviour>().UpdateTargets(GameManager.GetComponent<GameManagerBehaviour>().Targets + 1);
@@ -102,9 +104,11 @@ public class BombBehaviour : MonoBehaviour {
         else
         {
             Debug.Log("Bomb hit something else");
+			Instantiate(this.SplatParticles, this.transform.position, Quaternion.identity);
             Destroy(gameObject);
             GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
         }
+		
         source.Stop();
         source.pitch = Random.Range(lowPitchRange, highPitchRange);
         float vol = Random.Range(volLowRange, volHighRange);
