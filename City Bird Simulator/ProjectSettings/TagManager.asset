@@ -9,6 +9,7 @@ TagManager:
   - Thermal
   - Goal
   - Manager
+  - PowerUp
   layers:
   - Default
   - TransparentFX

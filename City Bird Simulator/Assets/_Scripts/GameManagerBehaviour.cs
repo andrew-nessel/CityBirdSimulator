@@ -3,7 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManagerBehaviour : MonoBehaviour {
-
+	protected static GameManagerBehaviour _instance = null;
+	
+	public static GameManagerBehaviour Instance {
+		get {
+			if (_instance == null){
+				_instance = FindObjectOfType<GameManagerBehaviour>();
+				if (_instance == null) {
+					Debug.LogError("An instance of GameManager is required but does not exist");
+				}
+			}
+			return _instance;
+		}
+	}
+	
     public Vector3 spawnLocation;
     public GameObject player;
     public GameObject camera;
@@ -112,5 +125,10 @@ public class GameManagerBehaviour : MonoBehaviour {
         BombCamera.SetActive(true);
         HUDUI.GetComponent<HUDUIScript>().turnOnBombCamera();
     }
-
+	
+	//Below = PowerUp activation
+	public void activatePowerUp(){
+		Bombs += 1;
+		UpdateBombs(Bombs);
+	}
 }

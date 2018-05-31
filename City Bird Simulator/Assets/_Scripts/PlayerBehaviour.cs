@@ -229,9 +229,9 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Thermal")
+        if (other.gameObject.tag == "Thermal")
         {
             Debug.Log("Player hit a Thermal");
             inThermal = true;
@@ -239,6 +239,14 @@ public class PlayerBehaviour : MonoBehaviour
         else
         {
             //Do nothing
+        }
+		
+		//Use below to activate power-ups
+		if (other.gameObject.tag == "PowerUp")
+        {
+            Debug.Log("Player got a Burger");
+			Destroy(other.gameObject);
+			GameManagerBehaviour.Instance.activatePowerUp();
         }
     }
 
