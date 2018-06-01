@@ -15,7 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Rigidbody rb;
     private Vector3 previousVelocity;
-    private bool inThermal;
+    private float thermalLift;
 
     public LineRenderer lineRenderer;
 
@@ -40,7 +40,7 @@ public class PlayerBehaviour : MonoBehaviour
         Rtilt = 0.0f;
         speed = 0.0f;
         maxspeed = 20.0f;
-        inThermal = false;
+        thermalLift = 0f;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.startWidth = .1f;
         lineRenderer.endWidth = .1f;
@@ -64,20 +64,28 @@ public class PlayerBehaviour : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
-                    //source.pitch = Random.Range(lowPitchRange, highPitchRange);
-                    GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
-                    // give it the same velocity as the current object
-                    //go.GetComponent<Rigidbody>().velocity = rb.velocity;
-                    go.GetComponent<BombBehaviour>().speed = speed;
-                    go.GetComponent<BombBehaviour>().GameManager = GameManager;
-                    lineRenderer.useWorldSpace = false;
+                    if (Input.GetMouseButton(1))
+                    {
+                        lineRenderer.useWorldSpace = false;
+                    }
+                    else
+                    {
+                        //source.pitch = Random.Range(lowPitchRange, highPitchRange);
+                        GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
+                        // give it the same velocity as the current object
+                        //go.GetComponent<Rigidbody>().velocity = rb.velocity;
+                        go.GetComponent<BombBehaviour>().speed = speed;
+                        go.GetComponent<BombBehaviour>().GameManager = GameManager;
+                        lineRenderer.useWorldSpace = false;
 
-                    GameManager.GetComponent<GameManagerBehaviour>().UpdateBombs(GameManager.GetComponent<GameManagerBehaviour>().Bombs - 1);
-                    GameManager.GetComponent<GameManagerBehaviour>().activateBomb();
-                    GameObject bombCam = GameManager.GetComponent<GameManagerBehaviour>().BombCamera;
-                    bombCam.transform.rotation = rb.rotation;
-                    bombCam.transform.position = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
-                    go.GetComponent<BombBehaviour>().BombCamera = bombCam;
+                        GameManager.GetComponent<GameManagerBehaviour>().UpdateBombs(GameManager.GetComponent<GameManagerBehaviour>().Bombs - 1);
+                        GameManager.GetComponent<GameManagerBehaviour>().activateBomb();
+                        GameObject bombCam = GameManager.GetComponent<GameManagerBehaviour>().BombCamera;
+                        bombCam.transform.rotation = rb.rotation;
+                        bombCam.transform.position = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
+                        go.GetComponent<BombBehaviour>().BombCamera = bombCam;
+
+                    }
                 }
             }
             
@@ -129,10 +137,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         float velocity = (Mathf.Abs(speed) + 1) * 2;
 
-        if (inThermal)
-        {
-            lift = lift + 10f;
-        }
+        lift = lift + thermalLift;
 
         float birdTilt = 0f;
 
@@ -234,7 +239,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Thermal")
         {
             Debug.Log("Player hit a Thermal");
-            inThermal = true;
+            thermalLift = other.gameObject.GetComponent<ThermalBehaviour>().getLift();
         }
         else
         {
@@ -255,7 +260,11 @@ public class PlayerBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Thermal")
         {
             Debug.Log("Player exited a Thermal");
-            inThermal = false;
+            thermalLift = 0f;
+            if (!collision.gameObject.GetComponent<ThermalBehaviour>().isOnCooldown())
+            {
+                collision.gameObject.GetComponent<ThermalBehaviour>().goIntoCooldown();
+            }
         }
         else
         {
