@@ -94,8 +94,10 @@ public class BombBehaviour : MonoBehaviour {
             Debug.Log("Bomb hit a TARGET");
 			Instantiate(this.SplatParticles, this.transform.position, Quaternion.identity);
             Destroy(gameObject);
+            collision.gameObject.tag = "HitTarget";
             GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
             GameManager.GetComponent<GameManagerBehaviour>().UpdateTargets(GameManager.GetComponent<GameManagerBehaviour>().Targets + 1);
+            GameManager.GetComponent<GameManagerBehaviour>().checkForGoal();
         }
         else if (collision.gameObject.tag == "Bomb")
         {

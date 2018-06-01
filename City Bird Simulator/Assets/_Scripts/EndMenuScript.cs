@@ -49,4 +49,9 @@ public class EndMenuScript : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void UpdateScore(int score)
+    {
+        endMenuScore.text = score.ToString();
+    }
 }

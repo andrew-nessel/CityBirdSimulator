@@ -24,18 +24,25 @@ public class GameManagerBehaviour : MonoBehaviour {
     public GameObject EndMenu;
     public GameObject HUDUI;
     public GameObject BombCamera;
+    public GameObject Goal;
     public bool isPaused = false;
     public bool isHUD = false;
     public bool bombActive = false;
 
     public int Targets;
     public int Bombs;
+    public int timeInSeconds;
+    public int targetsToGoal;
+
+    private float timerAmount;
 
     // Use this for initialization
     void Start () {
         Targets = 0;
         UpdateBombs(Bombs);
         UpdateTargets(Targets);
+        timerAmount = timeInSeconds;
+        Goal.SetActive(false);
         Screen.lockCursor = true;
     }
 	
@@ -47,13 +54,15 @@ public class GameManagerBehaviour : MonoBehaviour {
             isPaused = true;
             Screen.lockCursor = false;
             EndMenu.GetComponent<EndMenuScript>().Victory();
-
+            EndMenu.GetComponent<EndMenuScript>().UpdateScore(Mathf.FloorToInt(timerAmount) + (Targets*10));
+            HUDUI.SetActive(false);
         }
         else if (player.GetComponent<PlayerBehaviour>().collide)
         {
             isPaused = true;
             Screen.lockCursor = false;
             EndMenu.GetComponent<EndMenuScript>().Defeat();
+            HUDUI.SetActive(false);
         }
         else
         {
@@ -88,6 +97,10 @@ public class GameManagerBehaviour : MonoBehaviour {
                         isHUD = true;
                     }
                 }
+
+                timerAmount -= Time.deltaTime;
+
+                HUDUI.GetComponent<HUDUIScript>().UpdateTimer(timerAmount);
             }
         }
 
@@ -125,10 +138,18 @@ public class GameManagerBehaviour : MonoBehaviour {
         BombCamera.SetActive(true);
         HUDUI.GetComponent<HUDUIScript>().turnOnBombCamera();
     }
+
+    public void checkForGoal()
+    {
+        if (Targets>=targetsToGoal) {
+            Goal.SetActive(true);
+        }
+    }
 	
 	//Below = PowerUp activation
 	public void activatePowerUp(){
 		Bombs += 1;
 		UpdateBombs(Bombs);
 	}
+    
 }

@@ -10,6 +10,7 @@ TagManager:
   - Goal
   - Manager
   - PowerUp
+  - HitTarget
   layers:
   - Default
   - TransparentFX

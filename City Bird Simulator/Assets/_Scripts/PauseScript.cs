@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseScript : MonoBehaviour {
 
     public GameObject pauseMenuUI;
+    public GameObject gameManager;
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,6 +18,7 @@ public class PauseScript : MonoBehaviour {
         Screen.lockCursor = true;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        gameManager.GetComponent<GameManagerBehaviour>().isPaused = false;
     }
 
     public void Pause()
