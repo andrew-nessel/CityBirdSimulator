@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44278818, g: 0.49193448, b: 0.5717136, a: 1}
+  m_IndirectSpecularColor: {r: 0.44278777, g: 0.49193406, b: 0.57171273, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2587,7 +2587,8 @@ AudioSource:
   m_GameObject: {fileID: 436364346}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243277025247950996, guid: fe802fb20569cbd429199dbc23e41892,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 513fd9c13e0ef944292f7563b0e5ba7f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -2674,6 +2675,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!120 &436364349 stripped
+LineRenderer:
+  m_PrefabParentObject: {fileID: 120852544777633952, guid: f41b1350c5d79cc45a4c01fc818f14c1,
+    type: 2}
+  m_PrefabInternal: {fileID: 876243290}
 --- !u!1001 &437449762
 Prefab:
   m_ObjectHideFlags: 0
@@ -4538,18 +4544,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4858181751243258, guid: f41b1350c5d79cc45a4c01fc818f14c1, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
         type: 2}
       propertyPath: GameManager
       value: 
-      objectReference: {fileID: 1849045195}
+      objectReference: {fileID: 1575794200245312, guid: 9e1fce7dee76a7841b120d1322a504d0,
+        type: 2}
     - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
         type: 2}
       propertyPath: pigeonCoo
       value: 
-      objectReference: {fileID: 8300000, guid: 8917b964c6749aa4a82d1d8a423e36ac, type: 3}
+      objectReference: {fileID: 8300000, guid: 513fd9c13e0ef944292f7563b0e5ba7f, type: 3}
     - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
         type: 2}
       propertyPath: pigeon
@@ -4560,6 +4567,17 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
+        type: 2}
+      propertyPath: Bomb
+      value: 
+      objectReference: {fileID: 1001041194971308, guid: 5e8f6392703af564e9a22599194fd398,
+        type: 2}
+    - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
+        type: 2}
+      propertyPath: lineRenderer
+      value: 
+      objectReference: {fileID: 436364349}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f41b1350c5d79cc45a4c01fc818f14c1, type: 2}
   m_IsPrefabParent: 0
@@ -4876,6 +4894,7 @@ GameObject:
   - component: {fileID: 963711503}
   - component: {fileID: 963711505}
   - component: {fileID: 963711504}
+  - component: {fileID: 963711506}
   m_Layer: 0
   m_Name: BGMPlayer
   m_TagString: Untagged
@@ -4904,7 +4923,8 @@ AudioSource:
   m_GameObject: {fileID: 963711502}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243695446299322810, guid: fe802fb20569cbd429199dbc23e41892,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 95b821482daca4847a353477e5c66d04, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.505
@@ -4999,7 +5019,8 @@ AudioSource:
   m_GameObject: {fileID: 963711502}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243695446299322810, guid: fe802fb20569cbd429199dbc23e41892,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 086a331ea00a2b54ea75526532452efe, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -5086,6 +5107,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &963711506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 963711502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e15c233b734524ab3922d0699760d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicMixer: {fileID: 24100000, guid: fe802fb20569cbd429199dbc23e41892, type: 2}
+  Master: {fileID: 24300002, guid: fe802fb20569cbd429199dbc23e41892, type: 2}
+  BGM: {fileID: 243695446299322810, guid: fe802fb20569cbd429199dbc23e41892, type: 2}
+  SFX: {fileID: 243277025247950996, guid: fe802fb20569cbd429199dbc23e41892, type: 2}
 --- !u!1 &968273563
 GameObject:
   m_ObjectHideFlags: 0
@@ -9288,7 +9324,7 @@ RectTransform:
   - {fileID: 221406336}
   - {fileID: 275561243}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
