@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 23488351187590396}
   - component: {fileID: 54696276245860850}
   - component: {fileID: 114168108259076386}
-  - component: {fileID: 82092666529966630}
   - component: {fileID: 96374191465479784}
+  - component: {fileID: 82184381025653028}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
@@ -103,7 +103,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &82092666529966630
+--- !u!82 &82184381025653028
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,9 +111,10 @@ AudioSource:
   m_GameObject: {fileID: 1001041194971308}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243834032613249068, guid: fe802fb20569cbd429199dbc23e41892,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -308,8 +309,10 @@ MonoBehaviour:
   BombCamera: {fileID: 0}
   SplatParticles: {fileID: 1693076109697250, guid: 3d5ea61c007846d4da555c4427cb7630,
     type: 2}
-  shootSound: {fileID: 0}
-  splatSound: {fileID: 0}
+  shoot1: {fileID: 8300000, guid: d101d3b429f8d5741834c83c4e146506, type: 3}
+  shoot2: {fileID: 8300000, guid: b31594a5dfcd9a941a25621d81a03d08, type: 3}
+  splat: {fileID: 8300000, guid: cdfe54e4c619d304ab9e56cdda549be6, type: 3}
+  squish: {fileID: 8300000, guid: 19d14a9c3e87f784290f07cb86e7f65e, type: 3}
 --- !u!135 &135878807142731694
 SphereCollider:
   m_ObjectHideFlags: 1

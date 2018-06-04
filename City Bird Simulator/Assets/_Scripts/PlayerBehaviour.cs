@@ -27,6 +27,15 @@ public class PlayerBehaviour : MonoBehaviour
     public AudioClip pigeon;
     public AudioClip caw;
 
+    //BirdCollisionSounds
+    public AudioClip impact;
+    public AudioClip splat;
+    public AudioClip rattle;
+    public AudioClip metal1;
+    public AudioClip metal2;
+    public AudioClip thud;
+    private bool BirdDeath = true;
+
     public Random rand;
     private AudioSource source;
     private float lowPitchRange = .9F;
@@ -104,14 +113,47 @@ public class PlayerBehaviour : MonoBehaviour
             
             
         }
+
     }
 
     private void FixedUpdate()
     {
         if (collide)
         {
+            float rand = Random.Range(0, 6);
             rb.useGravity = true;
+            if(rand < 1f && BirdDeath)
+            {
+                source.PlayOneShot(impact);
+                BirdDeath = false;
+            }
+            else if(rand < 2f && BirdDeath)
+            {
+                source.PlayOneShot(splat);
+                BirdDeath = false;
+            }
+            else if(rand < 3f && BirdDeath)
+            {
+                source.PlayOneShot(rattle);
+                BirdDeath = false;
+            }
+            else if(rand < 4f && BirdDeath)
+            {
+                source.PlayOneShot(metal1);
+                BirdDeath = false;
+            }
+            else if(rand < 5f && BirdDeath)
+            {
+                source.PlayOneShot(metal2);
+                BirdDeath = false;
+            }
+            else if(rand < 6f && BirdDeath)
+            {
+                source.PlayOneShot(thud);
+                BirdDeath = false;
+            }
             return;
+
         }
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -153,8 +195,6 @@ public class PlayerBehaviour : MonoBehaviour
         float fallSpeed = -lift;// - 9.8f;
 
         float momentum = fallSpeed * .05f;
-
-
 
         speed = speed + momentum;
 
@@ -337,7 +377,7 @@ public class PlayerBehaviour : MonoBehaviour
             Vector3 point2 = point1 + (bombVelocity * step) + predictedBombVelocity;
             point1 = point2;
         }*/
-        return positions;
+            return positions;
     }
     //Display the trajectory path with a line renderer
     public void DrawTrajectoryPath()

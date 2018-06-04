@@ -15,8 +15,11 @@ public class BombBehaviour : MonoBehaviour {
 	public GameObject SplatParticles;
 	
     //Sound variables
-    public AudioClip shootSound;
-    public AudioClip splatSound;
+    public AudioClip shoot1;
+    public AudioClip shoot2;
+    public AudioClip splat;
+    public AudioClip squish;
+
     private AudioSource source;
     private float volLowRange = .5f;
     private float volHighRange = 1.0f;
@@ -36,7 +39,15 @@ public class BombBehaviour : MonoBehaviour {
 
         //Play sound upon
         float vol = Random.Range(volLowRange, volHighRange);
-        source.PlayOneShot(shootSound, vol);
+        float rand = Random.Range(0, 2);
+        if(rand < 1f)
+        {
+            source.PlayOneShot(shoot1, vol);
+        }
+        else if(rand < 2f)
+        {
+            source.PlayOneShot(shoot2, vol);
+        }
     }
 
     // Update is called once per frame
@@ -87,13 +98,30 @@ public class BombBehaviour : MonoBehaviour {
         }
     }
 
+    IEnumerator SplatSoundDelay()
+    {
+        yield return new WaitForSeconds(5f);
+    }
     void OnCollisionEnter(Collision collision)
     {
+        source.Stop();
+        source.pitch = Random.Range(lowPitchRange, highPitchRange);
+        float vol = Random.Range(volLowRange, volHighRange);
+        float rand = Random.Range(0, 2);
+        if (rand < 1f)
+        {
+            source.PlayOneShot(splat, vol);
+        }
+        else if (rand < 2f)
+        {
+            source.PlayOneShot(squish, vol);
+        }
+        GetComponent<Renderer>().enabled = false;
         if (collision.gameObject.tag == "Target")
         {
             Debug.Log("Bomb hit a TARGET");
 			Instantiate(this.SplatParticles, this.transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Destroy(gameObject, splat.length);
             collision.gameObject.tag = "HitTarget";
             GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
             GameManager.GetComponent<GameManagerBehaviour>().UpdateTargets(GameManager.GetComponent<GameManagerBehaviour>().Targets + 1);
@@ -107,14 +135,12 @@ public class BombBehaviour : MonoBehaviour {
         {
             Debug.Log("Bomb hit something else");
 			Instantiate(this.SplatParticles, this.transform.position, Quaternion.identity);
-            Destroy(gameObject);
+
+            Destroy(gameObject, splat.length);
             GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
         }
 		
-        source.Stop();
-        source.pitch = Random.Range(lowPitchRange, highPitchRange);
-        float vol = Random.Range(volLowRange, volHighRange);
-        source.PlayOneShot(splatSound, vol);
+        
 
     }
     //Easier to change integration method once in this method
