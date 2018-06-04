@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44278777, g: 0.49193406, b: 0.57171273, a: 1}
+  m_IndirectSpecularColor: {r: 0.44278818, g: 0.49193448, b: 0.5717136, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2599,6 +2599,7 @@ RectTransform:
   - {fileID: 1753958585}
   - {fileID: 1060603953}
   - {fileID: 118840203}
+  - {fileID: 1840575415}
   m_Father: {fileID: 1643945550}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5366,6 +5367,12 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
+        type: 2}
+      propertyPath: BigBomb
+      value: 
+      objectReference: {fileID: 1475687342254376, guid: 6f06954b903787146b986c9110fff28e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f41b1350c5d79cc45a4c01fc818f14c1, type: 2}
   m_IsPrefabParent: 0
@@ -8070,6 +8077,24 @@ Transform:
   m_PrefabParentObject: {fileID: 4853396360576114, guid: e891833ee7e1c074dbef15aa01bcc3fe,
     type: 2}
   m_PrefabInternal: {fileID: 1051519281}
+--- !u!1 &1245719635 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1265702869061008, guid: 024828e24ce16c4478202f992ef1d8c5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1382223956}
+--- !u!114 &1245719637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245719635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bcb2dd31ad77444a425ddc38f10a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bombtype: 1
+  NumberOfBombs: 5
 --- !u!1001 &1245936979
 Prefab:
   m_ObjectHideFlags: 0
@@ -8521,6 +8546,16 @@ Prefab:
     - target: {fileID: 4655496624185140, guid: 024828e24ce16c4478202f992ef1d8c5, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 135430008843965664, guid: 024828e24ce16c4478202f992ef1d8c5,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114624433761554246, guid: 024828e24ce16c4478202f992ef1d8c5,
+        type: 2}
+      propertyPath: Bombtype
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135911012209481470, guid: 024828e24ce16c4478202f992ef1d8c5, type: 2}
@@ -9988,6 +10023,16 @@ Prefab:
       propertyPath: m_Name
       value: Power-Up_Prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114624433761554246, guid: 024828e24ce16c4478202f992ef1d8c5,
+        type: 2}
+      propertyPath: Bombtype
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114624433761554246, guid: 024828e24ce16c4478202f992ef1d8c5,
+        type: 2}
+      propertyPath: NumberOfBombs
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 024828e24ce16c4478202f992ef1d8c5, type: 2}
   m_IsPrefabParent: 0
@@ -11232,6 +11277,8 @@ MonoBehaviour:
   BombCounterText: {fileID: 118840204}
   TargetCounterText: {fileID: 826099533}
   TimerText: {fileID: 968273565}
+  standardBombImage: {fileID: 1753958584}
+  bigBombImage: {fileID: 1840575414}
   BombCameraPanel: {fileID: 221406335}
 --- !u!1 &1646981671 stripped
 GameObject:
@@ -12066,7 +12113,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4a026c063ba846e45810959c3532fde7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f447712e0479c3143890483f6ba52695, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12541,6 +12588,74 @@ Transform:
   m_PrefabParentObject: {fileID: 4746854906191066, guid: 055fbfdc2132d434cac5df48fa58beb1,
     type: 2}
   m_PrefabInternal: {fileID: 1839038073}
+--- !u!1 &1840575414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1840575415}
+  - component: {fileID: 1840575417}
+  - component: {fileID: 1840575416}
+  m_Layer: 5
+  m_Name: BigBombImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1840575415
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1840575414}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 387250340}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -18.400024, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1840575416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1840575414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 4a026c063ba846e45810959c3532fde7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1840575417
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1840575414}
 --- !u!1 &1849045195 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1575794200245312, guid: 9e1fce7dee76a7841b120d1322a504d0,

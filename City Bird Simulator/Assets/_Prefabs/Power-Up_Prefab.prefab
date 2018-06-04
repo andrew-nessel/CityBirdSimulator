@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4655496624185140}
   - component: {fileID: 135430008843965664}
+  - component: {fileID: 114624433761554246}
   m_Layer: 0
   m_Name: Power-Up_Prefab
   m_TagString: PowerUp
@@ -758,6 +759,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914393883533630}
   m_Mesh: {fileID: 4300000, guid: 21e5d1b27a94e0b489fead9b03f494e7, type: 3}
+--- !u!114 &114624433761554246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1265702869061008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bcb2dd31ad77444a425ddc38f10a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bombtype: 0
+  NumberOfBombs: 5
 --- !u!135 &135430008843965664
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -768,7 +782,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135911012209481470
 SphereCollider:

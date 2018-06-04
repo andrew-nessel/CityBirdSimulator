@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     public bool winCondition = false;
     public float maxspeed;
     public GameObject Bomb;
+    public GameObject BigBomb;
     public GameObject GameManager;
 
     public Rigidbody rb;
@@ -71,14 +72,24 @@ public class PlayerBehaviour : MonoBehaviour
                     else
                     {
                         //source.pitch = Random.Range(lowPitchRange, highPitchRange);
-                        GameObject go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
+                        GameObject go;
+                        if(GameManager.GetComponent<GameManagerBehaviour>().bombType == 1)
+                        {
+                            go = Instantiate(BigBomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
+                            GameManager.GetComponent<GameManagerBehaviour>().UpdateBombs(GameManager.GetComponent<GameManagerBehaviour>().powerUpBombNumber - 1, GameManager.GetComponent<GameManagerBehaviour>().bombType);
+                        }
+                        else
+                        {
+                            go = Instantiate(Bomb, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
+                            GameManager.GetComponent<GameManagerBehaviour>().UpdateBombs(GameManager.GetComponent<GameManagerBehaviour>().Bombs - 1, GameManager.GetComponent<GameManagerBehaviour>().bombType);
+                        }
                         // give it the same velocity as the current object
                         //go.GetComponent<Rigidbody>().velocity = rb.velocity;
                         go.GetComponent<BombBehaviour>().speed = speed;
                         go.GetComponent<BombBehaviour>().GameManager = GameManager;
                         lineRenderer.useWorldSpace = false;
 
-                        GameManager.GetComponent<GameManagerBehaviour>().UpdateBombs(GameManager.GetComponent<GameManagerBehaviour>().Bombs - 1);
+                        
                         GameManager.GetComponent<GameManagerBehaviour>().activateBomb();
                         GameObject bombCam = GameManager.GetComponent<GameManagerBehaviour>().BombCamera;
                         bombCam.transform.rotation = rb.rotation;
@@ -116,7 +127,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Rtilt < -1)
             Rtilt = 360f + Rtilt;
 
-        float lift = (tilt * 16f) - 10.5f;
+        float lift = (tilt * 16f) - 11f;
         float fallSpeed = -lift;// - 9.8f;
 
         float momentum = fallSpeed * .05f;
@@ -125,7 +136,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         speed = speed + momentum;
 
-        if (speed < 0.0f)
+        if (speed < 0.2f)
         {
             speed = 0.1f;
             lift = -1.5f;
@@ -250,8 +261,8 @@ public class PlayerBehaviour : MonoBehaviour
 		if (other.gameObject.tag == "PowerUp")
         {
             Debug.Log("Player got a Burger");
-			Destroy(other.gameObject);
-			GameManagerBehaviour.Instance.activatePowerUp();
+            GameManagerBehaviour.Instance.activatePowerUp(other.gameObject.GetComponent<PowerupBehaviour>().NumberOfBombs, other.gameObject.GetComponent<PowerupBehaviour>().Bombtype);
+            Destroy(other.gameObject);
         }
     }
 

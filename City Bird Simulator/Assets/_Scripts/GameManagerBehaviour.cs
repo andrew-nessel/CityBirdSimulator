@@ -33,13 +33,16 @@ public class GameManagerBehaviour : MonoBehaviour {
     public int Bombs;
     public int timeInSeconds;
     public int targetsToGoal;
+    public int bombType;
 
+    public int powerUpBombNumber;
     private float timerAmount;
 
     // Use this for initialization
     void Start () {
         Targets = 0;
-        UpdateBombs(Bombs);
+        bombType = 0;
+        UpdateBombs(Bombs, 0);
         UpdateTargets(Targets);
         timerAmount = timeInSeconds;
         Goal.SetActive(false);
@@ -107,10 +110,32 @@ public class GameManagerBehaviour : MonoBehaviour {
 
     }
 
-    public void UpdateBombs(int bombs)
+    public void UpdateBombs(int bombs, int type)
     {
-        HUDUI.GetComponent<HUDUIScript>().UpdateBombCounter(bombs);
-        Bombs = bombs;
+
+        if(type == 0)
+        {
+            Bombs = bombs;
+        }
+        else
+        {
+            if(bombs == 0)
+            {
+                powerUpBombNumber = 0;
+                bombType = 0;
+                type = 0;
+                bombs = Bombs;
+
+            }
+            else
+            {
+                powerUpBombNumber = bombs;
+                bombType = type;
+            }
+        }
+
+        HUDUI.GetComponent<HUDUIScript>().UpdateBombCounter(bombs, type);
+
     }
     
 
@@ -147,9 +172,17 @@ public class GameManagerBehaviour : MonoBehaviour {
     }
 	
 	//Below = PowerUp activation
-	public void activatePowerUp(){
-		Bombs += 1;
-		UpdateBombs(Bombs);
-	}
+	public void activatePowerUp(int bombs, int type)
+    {
+        if (type == 0)
+        {
+            UpdateBombs(Bombs + bombs, type);
+
+        }
+        else
+        {
+            UpdateBombs(bombs, type);
+        }
+    }
     
 }
