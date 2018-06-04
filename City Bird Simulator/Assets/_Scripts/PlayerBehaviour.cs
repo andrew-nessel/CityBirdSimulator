@@ -176,7 +176,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetKey("e"))
         {
             wasDive = true;
-            tilt = -.25f;
+            tilt = -1.65f;
             birdTilt = (60f);
         }
         else
