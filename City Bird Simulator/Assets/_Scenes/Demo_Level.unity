@@ -648,6 +648,16 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: liftAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
   m_IsPrefabParent: 0
@@ -730,6 +740,16 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startLifetime.scalar
       value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: liftAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
@@ -1445,6 +1465,11 @@ Prefab:
       propertyPath: InitialModule.startSize.scalar
       value: 3.1
       objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: liftAmount
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
   m_IsPrefabParent: 0
@@ -2021,6 +2046,11 @@ Prefab:
       propertyPath: InitialModule.startLifetime.scalar
       value: 6.11
       objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
   m_IsPrefabParent: 0
@@ -2269,6 +2299,16 @@ Prefab:
     - target: {fileID: 4599521695419666, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
       propertyPath: m_LocalScale.z
       value: 9.987868
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: liftAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
@@ -2778,6 +2818,16 @@ Prefab:
       propertyPath: InitialModule.startSpeed.scalar
       value: 31.85
       objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: liftAmount
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
   m_IsPrefabParent: 0
@@ -3163,6 +3213,11 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startLifetime.scalar
       value: 6.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
@@ -4195,6 +4250,11 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
@@ -5627,6 +5687,11 @@ Prefab:
       propertyPath: InitialModule.startSize.scalar
       value: 3.34
       objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
   m_IsPrefabParent: 0
@@ -6517,6 +6582,11 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSpeed.scalar
       value: 8.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
@@ -8894,7 +8964,8 @@ Prefab:
       propertyPath: m_Name
       value: Power-Up_Prefab (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114624433761554246, guid: 024828e24ce16c4478202f992ef1d8c5, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 024828e24ce16c4478202f992ef1d8c5, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1391364698 stripped
@@ -8971,6 +9042,11 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 3.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
@@ -11092,6 +11168,16 @@ Prefab:
       propertyPath: InitialModule.startLifetime.scalar
       value: 3.13
       objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: liftAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
   m_IsPrefabParent: 0
@@ -12295,6 +12381,11 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSize.scalar
       value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504662311970938, guid: 6e02cc75f3bf5e649bb6eb2e090fe608,
+        type: 2}
+      propertyPath: cooldownInSeconds
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e02cc75f3bf5e649bb6eb2e090fe608, type: 2}
