@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liftAmount: 10
   cooldownInSeconds: 10
+  paSystem: {fileID: 198558708206359784}
 --- !u!198 &198558708206359784
 ParticleSystem:
   m_ObjectHideFlags: 1

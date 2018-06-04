@@ -110,13 +110,13 @@ public class PlayerBehaviour : MonoBehaviour
         if (tilt < 0)
             tilt = 0f;
 
-        Rtilt = Rtilt + horizontal;
+        Rtilt = Rtilt + horizontal * 1.5f;
         if (Rtilt > 360)
             Rtilt = Rtilt - 360f;
         if (Rtilt < -1)
             Rtilt = 360f + Rtilt;
 
-        float lift = (tilt * 12f) - 6.5f;
+        float lift = (tilt * 16f) - 10.5f;
         float fallSpeed = -lift;// - 9.8f;
 
         float momentum = fallSpeed * .05f;
@@ -128,7 +128,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (speed < 0.0f)
         {
             speed = 0.1f;
-            lift = -0.5f;
+            lift = -1.5f;
         }
         else if (speed > maxspeed)
         {

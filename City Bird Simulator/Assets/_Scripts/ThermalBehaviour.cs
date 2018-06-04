@@ -2,37 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThermalBehaviour : MonoBehaviour {
+public class ThermalBehaviour : MonoBehaviour
+{
 
     public float liftAmount;
     public float cooldownInSeconds;
+    public ParticleSystem paSystem;
 
     private bool onCooldown;
     private float timeTillReactive;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         onCooldown = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (onCooldown)
         {
-            if(timeTillReactive <= 0f)
+            if (timeTillReactive <= 0f)
             {
                 onCooldown = false;
+                ParticleSystem.MainModule ma = paSystem.main;
+                ma.startColor = Color.white;
             }
             else
             {
                 timeTillReactive -= Time.deltaTime;
-                Debug.Log(timeTillReactive);
             }
         }
-	}
+    }
 
     public void goIntoCooldown()
     {
+        ParticleSystem.MainModule ma = paSystem.main;
+        ma.startColor = new Color(1, 0, 0, 1);
         onCooldown = true;
         timeTillReactive = cooldownInSeconds;
     }
