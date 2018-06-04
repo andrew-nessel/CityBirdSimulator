@@ -16,6 +16,8 @@ public class Target_Behavior_Script : MonoBehaviour {
     private AudioSource sound;
     void Start(){
 		m_Material = GetComponent<Renderer>().material;
+        sound = gameObject.GetComponent<AudioSource>();
+        sound.volume = 0.5f;
 	}
 	
 	void OnCollisionEnter(Collision other){
