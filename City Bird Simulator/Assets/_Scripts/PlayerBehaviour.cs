@@ -10,6 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     public bool collide = false;
     public bool winCondition = false;
     public float maxspeed;
+    public float diveMaxSpeed;
     public GameObject Bomb;
     public GameObject BigBomb;
     public GameObject GameManager;
@@ -32,6 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float highPitchRange = 1.25F;
     private float volLowRange = .5f;
     private float volHighRange = 1.0f;
+    private bool wasDive;
     void Start()
     {
         rand = new Random();
@@ -40,7 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
         tilt = 0.5f;
         Rtilt = 0.0f;
         speed = 0.0f;
-        maxspeed = 20.0f;
+        wasDive = false;
         thermalLift = 0f;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.startWidth = .1f;
@@ -126,8 +128,28 @@ public class PlayerBehaviour : MonoBehaviour
             Rtilt = Rtilt - 360f;
         if (Rtilt < -1)
             Rtilt = 360f + Rtilt;
+        
+        float birdTilt = 0f;
 
-        float lift = (tilt * 16f) - 11f;
+        if (Input.GetKey("e"))
+        {
+            wasDive = true;
+            tilt = -.25f;
+            birdTilt = (60f);
+        }
+        else
+        {
+            if (tilt < 0.5f)
+            {
+                birdTilt = (45f * (.5f - tilt));
+            }
+            else
+            {
+                birdTilt = ((tilt - .5f) * -45f);
+            }
+        }
+
+        float lift = (tilt * 16f) - 10f;
         float fallSpeed = -lift;// - 9.8f;
 
         float momentum = fallSpeed * .05f;
@@ -138,28 +160,29 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (speed < 0.2f)
         {
-            speed = 0.1f;
+            speed = 0.05f;
             lift = -1.5f;
         }
         else if (speed > maxspeed)
         {
-            speed = maxspeed;
+            if (wasDive)
+            {
+                if (speed > diveMaxSpeed)
+                {
+                    speed = diveMaxSpeed;
+                }
+            }
+            else
+            {
+                speed = maxspeed;
+                wasDive = false;
+            }
         }
 
         float velocity = (Mathf.Abs(speed) + 1) * 2;
 
         lift = lift + thermalLift;
-
-        float birdTilt = 0f;
-
-        if (tilt < 0.5f)
-        {
-            birdTilt = (45f * (.5f - tilt));
-        }
-        else
-        {
-            birdTilt = ((tilt - .5f) * -45f);
-        }
+        
 
         transform.eulerAngles = new Vector3(birdTilt, Rtilt, 0f);
         Vector3 velocityV = new Vector3();

@@ -5373,6 +5373,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1475687342254376, guid: 6f06954b903787146b986c9110fff28e,
         type: 2}
+    - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
+        type: 2}
+      propertyPath: maxspeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
+        type: 2}
+      propertyPath: diveMaxSpeed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f41b1350c5d79cc45a4c01fc818f14c1, type: 2}
   m_IsPrefabParent: 0
