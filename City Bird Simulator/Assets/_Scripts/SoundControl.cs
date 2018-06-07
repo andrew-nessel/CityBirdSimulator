@@ -10,7 +10,10 @@ public class SoundControl : MonoBehaviour {
     public AudioMixerGroup Master;
     public AudioMixerGroup BGM;
     public AudioMixerGroup SFX;
-
+    public AudioSource GameBGM;
+    public AudioSource MainMenuBGM;
+    public AudioSource DeathBGM;
+    public AudioSource CutSceneBGM;
 
     private void Awake()
     {
@@ -25,6 +28,8 @@ public class SoundControl : MonoBehaviour {
         }
         
     }
+
+   
     // Use this for initialization
     void Start () {
 		

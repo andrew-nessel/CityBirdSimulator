@@ -122,6 +122,15 @@ public class PlayerBehaviour : MonoBehaviour
         {
             float rand = Random.Range(0, 6);
             rb.useGravity = true;
+            if(BirdDeath)
+            {
+                SoundControl.control.DeathBGM.mute = false;
+                SoundControl.control.DeathBGM.Stop();
+                SoundControl.control.DeathBGM.PlayOneShot(SoundControl.control.DeathBGM.clip);
+                SoundControl.control.GameBGM.mute = true;
+                SoundControl.control.MainMenuBGM.mute = true;
+                SoundControl.control.CutSceneBGM.mute = true;
+            }
             if(rand < 1f && BirdDeath)
             {
                 source.PlayOneShot(impact);
