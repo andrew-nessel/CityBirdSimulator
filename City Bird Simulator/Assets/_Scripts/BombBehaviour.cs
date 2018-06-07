@@ -17,8 +17,7 @@ public class BombBehaviour : MonoBehaviour {
     //Sound variables
     public AudioClip shoot1;
     public AudioClip shoot2;
-    public AudioClip splat;
-    public AudioClip squish;
+    
 
     private AudioSource source;
     private float volLowRange = .5f;
@@ -104,24 +103,13 @@ public class BombBehaviour : MonoBehaviour {
     }
     void OnCollisionEnter(Collision collision)
     {
-        source.Stop();
-        source.pitch = Random.Range(lowPitchRange, highPitchRange);
-        float vol = Random.Range(volLowRange, volHighRange);
-        float rand = Random.Range(0, 2);
-        if (rand < 1f)
-        {
-            source.PlayOneShot(splat, vol);
-        }
-        else if (rand < 2f)
-        {
-            source.PlayOneShot(squish, vol);
-        }
+        
         GetComponent<Renderer>().enabled = false;
         if (collision.gameObject.tag == "Target")
         {
             Debug.Log("Bomb hit a TARGET");
 			Instantiate(this.SplatParticles, this.transform.position, Quaternion.identity);
-            Destroy(gameObject, splat.length);
+            Destroy(gameObject);
             collision.gameObject.tag = "HitTarget";
             GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
             GameManager.GetComponent<GameManagerBehaviour>().UpdateTargets(GameManager.GetComponent<GameManagerBehaviour>().Targets + 1);
@@ -136,7 +124,7 @@ public class BombBehaviour : MonoBehaviour {
             Debug.Log("Bomb hit something else");
 			Instantiate(this.SplatParticles, this.transform.position, Quaternion.identity);
 
-            Destroy(gameObject, splat.length);
+            Destroy(gameObject);
             GameManager.GetComponent<GameManagerBehaviour>().deactivateBomb();
         }
 		
