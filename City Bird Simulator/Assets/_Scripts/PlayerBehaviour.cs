@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -18,6 +19,13 @@ public class PlayerBehaviour : MonoBehaviour
     public Rigidbody rb;
     private Vector3 previousVelocity;
     private float thermalLift;
+	
+	//Meter Text
+	public Text Speedometer;
+	public Text Altimeter;
+	public float SpeedValue;
+	public float HeightValue;
+	Vector3 height;
 
     public LineRenderer lineRenderer;
 
@@ -113,8 +121,17 @@ public class PlayerBehaviour : MonoBehaviour
             
             
         }
+		ChangeMeters();
 
     }
+	
+	void ChangeMeters(){
+		height = new Vector3(0.0f, this.gameObject.transform.position.y, 0.0f);
+		HeightValue = height.y;
+		
+		Speedometer.text = speed.ToString("F2") + "m/s";
+		Altimeter.text = HeightValue.ToString("F2") + "m";
+	}
 
     private void FixedUpdate()
     {

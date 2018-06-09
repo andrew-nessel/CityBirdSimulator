@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 124025790933440296}
   - component: {fileID: 81021848921006760}
   - component: {fileID: 114650196038981858}
+  - component: {fileID: 114837035232580844}
   m_Layer: 0
   m_Name: Player_Camera
   m_TagString: MainCamera
@@ -89,6 +90,7 @@ GameObject:
   - component: {fileID: 54179286229191386}
   - component: {fileID: 114498471201012816}
   - component: {fileID: 120852544777633952}
+  - component: {fileID: 82135378825448916}
   m_Layer: 0
   m_Name: PlayerBird
   m_TagString: Player
@@ -279,6 +281,101 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1116096774505398}
   m_Enabled: 1
+--- !u!82 &82135378825448916
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1857639324334018}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 513fd9c13e0ef944292f7563b0e5ba7f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114498471201012816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,11 +392,27 @@ MonoBehaviour:
   Rtilt: 0
   collide: 0
   winCondition: 0
-  maxspeed: 0
+  maxspeed: 20
+  diveMaxSpeed: 30
   Bomb: {fileID: 1001041194971308, guid: 5e8f6392703af564e9a22599194fd398, type: 2}
+  BigBomb: {fileID: 1475687342254376, guid: 6f06954b903787146b986c9110fff28e, type: 2}
   GameManager: {fileID: 0}
   rb: {fileID: 0}
+  Speedometer: {fileID: 0}
+  Altimeter: {fileID: 0}
+  SpeedValue: 0
+  HeightValue: 0
   lineRenderer: {fileID: 0}
+  pigeonCoo: {fileID: 8300000, guid: 8917b964c6749aa4a82d1d8a423e36ac, type: 3}
+  Squawk: {fileID: 0}
+  pigeon: {fileID: 8300000, guid: 513fd9c13e0ef944292f7563b0e5ba7f, type: 3}
+  caw: {fileID: 0}
+  impact: {fileID: 8300000, guid: d25fd14ed79e44d45b830ce49a0b655c, type: 3}
+  splat: {fileID: 8300000, guid: 079498ccdaa1bf64d8780e6fb56d54ee, type: 3}
+  rattle: {fileID: 8300000, guid: 51a89dd982b21384188921e2c1f6758b, type: 3}
+  metal1: {fileID: 8300000, guid: 5c5e7a7a2f35fce4fa5f76b941048ee9, type: 3}
+  metal2: {fileID: 8300000, guid: ea859dff9b67fad4783a11f3e819abed, type: 3}
+  thud: {fileID: 8300000, guid: bff45f90958c1d2449fdfa36514bf08b, type: 3}
 --- !u!114 &114650196038981858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,9 +425,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1857639324334018}
-  horizontalSpeed: 2
-  verticalSpeed: 2
-  initialOffset: {x: 0, y: 5, z: -11}
+  target: {fileID: 0}
+  distance: 8
+  xSpeed: 100
+  ySpeed: 100
+  yMinLimit: -20
+  yMaxLimit: 80
+  distanceMin: 5
+  distanceMax: 20
+--- !u!114 &114837035232580844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116096774505398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ced3ad9d80911b46ab8fe2db235224f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &120852544777633952
 LineRenderer:
   m_ObjectHideFlags: 1
