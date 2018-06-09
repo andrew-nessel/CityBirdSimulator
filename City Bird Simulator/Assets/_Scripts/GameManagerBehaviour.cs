@@ -44,9 +44,10 @@ public class GameManagerBehaviour : MonoBehaviour {
         bombType = 0;
         UpdateBombs(Bombs, 0);
         UpdateTargets(Targets);
-        timerAmount = timeInSeconds;
+        timerAmount = 0;
         Goal.SetActive(false);
         Screen.lockCursor = true;
+        Time.timeScale = 1f;
     }
 	
 	// Update is called once per frame
@@ -57,13 +58,19 @@ public class GameManagerBehaviour : MonoBehaviour {
             isPaused = true;
             Screen.lockCursor = false;
             EndMenu.GetComponent<EndMenuScript>().Victory();
-            EndMenu.GetComponent<EndMenuScript>().UpdateScore(Mathf.FloorToInt(timerAmount) + (Targets*10));
+            int timeScore = Mathf.FloorToInt(timeInSeconds - timerAmount);
+            if(timeScore < 0)
+            {
+                timeScore = 0;
+            }
+            EndMenu.GetComponent<EndMenuScript>().UpdateScore(timeScore + (Targets*10));
             HUDUI.SetActive(false);
         }
         else if (player.GetComponent<PlayerBehaviour>().collide)
         {
             isPaused = true;
             Screen.lockCursor = false;
+            Time.timeScale = .333f;
             EndMenu.GetComponent<EndMenuScript>().Defeat();
             HUDUI.SetActive(false);
         }
@@ -101,7 +108,7 @@ public class GameManagerBehaviour : MonoBehaviour {
                     }
                 }
 
-                timerAmount -= Time.deltaTime;
+                timerAmount += Time.deltaTime;
 
                 HUDUI.GetComponent<HUDUIScript>().UpdateTimer(timerAmount);
             }

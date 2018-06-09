@@ -244,6 +244,10 @@ public class PlayerBehaviour : MonoBehaviour
                 wasDive = false;
             }
         }
+        else
+        {
+            wasDive = false;
+        }
 
         float velocity = (Mathf.Abs(speed) + 1) * 2;
 
