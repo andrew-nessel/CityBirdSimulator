@@ -171,6 +171,18 @@ public class GameManagerBehaviour : MonoBehaviour {
         HUDUI.GetComponent<HUDUIScript>().turnOnBombCamera();
     }
 
+    public void activateBombView()
+    {
+        BombCamera.SetActive(true);
+        HUDUI.GetComponent<HUDUIScript>().turnOnBombingVeiw();
+    }
+
+    public void deactivateBombView()
+    {
+        BombCamera.SetActive(false);
+        HUDUI.GetComponent<HUDUIScript>().turnOffBombingVeiw();
+    }
+
     public void checkForGoal()
     {
         if (Targets>=targetsToGoal) {

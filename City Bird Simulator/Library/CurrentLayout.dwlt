@@ -89,8 +89,8 @@ MonoBehaviour:
     y: 0
     width: 404
     height: 575
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -441,11 +441,11 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/_Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/_Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Andrew Nessel\Documents\repo\CityBirdSimulator\City
     Bird Simulator
@@ -453,9 +453,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 60360000
-    m_LastClickedID: 13920
-    m_ExpandedIDs: 0000000060360000aa36000000ca9a3bffffff7f
+    m_SelectedIDs: 5a0e0000
+    m_LastClickedID: 3674
+    m_ExpandedIDs: 00000000fe0800005809000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -483,7 +483,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000060360000aa360000
+    m_ExpandedIDs: 00000000fe08000058090000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -511,7 +511,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 642d0000a80b0000260900000000000040360000922a0000142f0000582d0000
+    m_ExpandedInstanceIDs: 642d0000a80b0000260900000000000040360000922a0000142f0000582d00005c0f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -601,7 +601,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 3289ffff8892ffff00000000803b0000
+    m_ExpandedIDs: 9cf2fffff0fbffff0000000050110000fe110000541200000414000016140000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -656,9 +656,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -62.945312, y: 51.333984, z: -44.41455}
+    m_Target: {x: 493.66406, y: 243.87134, z: -81.25}
     speed: 2
-    m_Value: {x: -62.945312, y: 51.333984, z: -44.41455}
+    m_Value: {x: 493.66406, y: 243.87134, z: -81.25}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -686,13 +686,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.10613847, y: -0.73267514, z: 0.11748691, w: 0.66190314}
+    m_Target: {x: 0.0014988523, y: 0.03899004, z: -0.000058484842, w: 0.99923795}
     speed: 2
-    m_Value: {x: 0.10613862, y: -0.7326762, z: 0.11748708, w: 0.6619041}
+    m_Value: {x: 0.0014988531, y: 0.03899006, z: -0.000058484875, w: 0.9992385}
   m_Size:
-    m_Target: 35.355495
+    m_Target: 515.2097
     speed: 2
-    m_Value: 35.355495
+    m_Value: 515.2097
   m_Ortho:
     m_Target: 1
     speed: 2

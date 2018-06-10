@@ -23,7 +23,9 @@ public class PlayerBehaviour : MonoBehaviour
 	//Meter Text
 	public Text Speedometer;
 	public Text Altimeter;
-	public float SpeedValue;
+    public GameObject SpeedArrow;
+    public GameObject AltArrow;
+    public float SpeedValue;
 	public float HeightValue;
 	Vector3 height;
 
@@ -51,6 +53,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float volLowRange = .5f;
     private float volHighRange = 1.0f;
     private bool wasDive;
+    private GameObject BombCam;
     void Start()
     {
         rand = new Random();
@@ -68,6 +71,7 @@ public class PlayerBehaviour : MonoBehaviour
         lineRenderer.endColor = Color.red;
         lineRenderer.useWorldSpace = true;
         source = GetComponent<AudioSource>();
+        BombCam = GameManager.GetComponent<GameManagerBehaviour>().BombCamera;
     }
 
     void Update()
@@ -80,6 +84,48 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     lineRenderer.useWorldSpace = true;
                     DrawTrajectoryPath();
+                    //GameManager.GetComponent<GameManagerBehaviour>().activateBombView();
+                    //BombCam.transform.rotation = rb.rotation;
+                    BombCam.transform.eulerAngles = new Vector3(90f, transform.eulerAngles.y, 0f);
+
+                    Vector3 bombViewpos = new Vector3(0f, 0f, 0f);
+                    bombViewpos.y = transform.position.y + 25f;
+                    bombViewpos.x = transform.position.x;
+                    bombViewpos.z = transform.position.z;
+
+                    if (transform.eulerAngles.y < 90)
+                    {
+                        //+x
+                        //+z
+                        bombViewpos.x += 10f * (transform.eulerAngles.y / 90);
+                        bombViewpos.z += 10f * (1 - (transform.eulerAngles.y / 90));
+                    }
+                    else if (transform.eulerAngles.y < 180)
+                    {
+                        //+x
+                        //-z
+                        float f1 = transform.eulerAngles.y - 90;
+                        bombViewpos.x += 10f * (1 - (f1 / 90));
+                        bombViewpos.z += 10f * (0 - (f1 / 90));
+                    }
+                    else if (transform.eulerAngles.y < 270)
+                    {
+                        //-x
+                        //-z
+                        float f1 = transform.eulerAngles.y - 180;
+                        bombViewpos.x += 10f * (0 - (f1 / 90));
+                        bombViewpos.z += 10f * (0 - (1 - (f1 / 90)));
+                    }
+                    else
+                    {
+                        //-x
+                        //+z
+                        float f1 = transform.eulerAngles.y - 270;
+                        bombViewpos.x += 10f * (0 - (1 - (f1 / 90)));
+                        bombViewpos.z += 10f * (f1 / 90);
+                    }
+
+                    BombCam.transform.position = bombViewpos;
                     //BuildTrajectoryLine(BuildTrajPath()); 
                 }
                 if (Input.GetMouseButtonUp(0))
@@ -87,6 +133,7 @@ public class PlayerBehaviour : MonoBehaviour
                     if (Input.GetMouseButton(1))
                     {
                         lineRenderer.useWorldSpace = false;
+                        GameManager.GetComponent<GameManagerBehaviour>().deactivateBombView();
                     }
                     else
                     {
@@ -110,10 +157,9 @@ public class PlayerBehaviour : MonoBehaviour
 
                         
                         GameManager.GetComponent<GameManagerBehaviour>().activateBomb();
-                        GameObject bombCam = GameManager.GetComponent<GameManagerBehaviour>().BombCamera;
-                        bombCam.transform.rotation = rb.rotation;
-                        bombCam.transform.position = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
-                        go.GetComponent<BombBehaviour>().BombCamera = bombCam;
+                        BombCam.transform.rotation = rb.rotation;
+                        BombCam.transform.position = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
+                        go.GetComponent<BombBehaviour>().BombCamera = BombCam;
 
                     }
                 }
@@ -130,8 +176,21 @@ public class PlayerBehaviour : MonoBehaviour
 		HeightValue = height.y;
 		
 		Speedometer.text = speed.ToString("F2") + "m/s";
+        SpeedArrow.transform.eulerAngles = new Vector3(0f, 0f, (float) (85f * (1.05 - (speed/(maxspeed * 1.5)))));
 		Altimeter.text = HeightValue.ToString("F2") + "m";
-	}
+
+        float heightr = (float)(-80f * (1 - (HeightValue / (120))));
+
+        if(heightr < -90)
+        {
+            heightr = -90;
+        }else if(heightr > -5)
+        {
+            heightr = -5;
+        }
+
+        AltArrow.transform.eulerAngles = new Vector3(0f, 0f, heightr);
+    }
 
     private void FixedUpdate()
     {
@@ -227,7 +286,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (speed < 0.2f)
         {
             speed = 0.05f;
-            lift = -1.5f;
+            lift = -1f;
+            tilt = tilt - 0.05f;
         }
         else if (speed > maxspeed)
         {

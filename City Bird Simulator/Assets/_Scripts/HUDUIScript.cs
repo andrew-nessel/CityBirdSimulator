@@ -13,15 +13,26 @@ public class HUDUIScript : MonoBehaviour {
     public GameObject bigBombImage;
     public GameObject BombCameraPanel;
 
+    private bool BombCamActive;
+    private bool BombViewActive;
+    private float BombCamTime;
+
     // Use this for initialization
     void Start () {
-		
-	}
+        BombCamActive = false;
+        BombCamTime = 0f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
-	}
+        if((!BombCamActive) && (!BombViewActive) &&  (BombCamTime < 0))
+        {
+            BombCameraPanel.SetActive(false);
+        }
+
+        BombCamTime -= Time.deltaTime;
+    }
 
     public void UpdateBombCounter(int num, int type)
     {
@@ -62,10 +73,26 @@ public class HUDUIScript : MonoBehaviour {
 
     public void turnOffBombCamera()
     {
-        BombCameraPanel.SetActive(false);
+        BombCamActive = false;
+        BombCamTime = 1f;
     }
+
     public void turnOnBombCamera()
     {
         BombCameraPanel.SetActive(true);
+        BombCamActive = true;
+        BombViewActive = false;
+    }
+
+    public void turnOnBombingVeiw()
+    {
+        BombCameraPanel.SetActive(true);
+        BombViewActive = true;
+    }
+
+    public void turnOffBombingVeiw()
+    {
+        BombCameraPanel.SetActive(false);
+        BombViewActive = false;
     }
 }
