@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44278818, g: 0.49193448, b: 0.5717136, a: 1}
+  m_IndirectSpecularColor: {r: 0.44278777, g: 0.49193406, b: 0.57171273, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5998,6 +5998,11 @@ Prefab:
       propertyPath: AltArrow
       value: 
       objectReference: {fileID: 585905004}
+    - target: {fileID: 114498471201012816, guid: f41b1350c5d79cc45a4c01fc818f14c1,
+        type: 2}
+      propertyPath: missionFail
+      value: 
+      objectReference: {fileID: 8300000, guid: 39d7f2c46e0865b48badfb36cd4d2c33, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f41b1350c5d79cc45a4c01fc818f14c1, type: 2}
   m_IsPrefabParent: 0

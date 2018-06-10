@@ -36,6 +36,7 @@ public class PlayerBehaviour : MonoBehaviour
     public AudioClip Squawk;
     public AudioClip pigeon;
     public AudioClip caw;
+    public AudioClip missionFail;
 
     //BirdCollisionSounds
     public AudioClip impact;
@@ -211,31 +212,37 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 source.PlayOneShot(impact);
                 BirdDeath = false;
+                source.PlayOneShot(missionFail);
             }
             else if(rand < 2f && BirdDeath)
             {
                 source.PlayOneShot(splat);
                 BirdDeath = false;
+                source.PlayOneShot(missionFail);
             }
             else if(rand < 3f && BirdDeath)
             {
                 source.PlayOneShot(rattle);
                 BirdDeath = false;
+                source.PlayOneShot(missionFail);
             }
             else if(rand < 4f && BirdDeath)
             {
                 source.PlayOneShot(metal1);
                 BirdDeath = false;
+                source.PlayOneShot(missionFail);
             }
             else if(rand < 5f && BirdDeath)
             {
                 source.PlayOneShot(metal2);
                 BirdDeath = false;
+                source.PlayOneShot(missionFail);
             }
             else if(rand < 6f && BirdDeath)
             {
                 source.PlayOneShot(thud);
                 BirdDeath = false;
+                source.PlayOneShot(missionFail);
             }
             return;
 
