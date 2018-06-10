@@ -14,6 +14,12 @@ public class Target_Behavior_Script : MonoBehaviour {
     public AudioClip Yo;
     public AudioClip Kidding;
     private AudioSource sound;
+
+    //Target Hit Sounds
+    public AudioClip forTheBooks;
+    public AudioClip bullseye;
+    public AudioClip killConfirmed;
+    public AudioClip oneDown;
     void Start(){
 		m_Material = GetComponent<Renderer>().material;
         sound = gameObject.GetComponent<AudioSource>();
@@ -23,40 +29,67 @@ public class Target_Behavior_Script : MonoBehaviour {
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.CompareTag("Bomb")){
 			this.m_Material.color = Color.white;
-            int rand = Random.Range(0, 8);
-            if (rand < 1f)
-            {
-                sound.PlayOneShot(Damn);
-            }
-            else if (rand < 2f)
-            {
-                sound.PlayOneShot(GodDammit);
-            }
-            else if (rand < 3f)
-            {
-                sound.PlayOneShot(No);
-            }
-            else if (rand < 4f)
-            {
-                sound.PlayOneShot(Sigh);
-            }
-            else if (rand < 5f)
-            {
-                sound.PlayOneShot(Great);
-            }
-            else if (rand < 6f)
-            {
-                sound.PlayOneShot(Why);
-            }
-            else if (rand < 7f)
-            {
-                sound.PlayOneShot(Yo);
-            }
-            else if (rand < 8f)
-            {
-                sound.PlayOneShot(Kidding);
-            }
+            float rand = Random.Range(0, 8);
+            StartCoroutine(playEngineSound());
 
         }
 	}
+
+    IEnumerator playEngineSound()
+    {
+        float rand = Random.Range(0, 8);
+        if (rand < 1f)
+        {
+            sound.clip = Damn;
+        }
+        else if (rand < 2f)
+        {
+            sound.clip = (GodDammit);
+        }
+        else if (rand < 3f)
+        {
+            sound.clip = (No);
+        }
+        else if (rand < 4f)
+        {
+            sound.clip = (Sigh);
+        }
+        else if (rand < 5f)
+        {
+            sound.clip = (Great);
+        }
+        else if (rand < 6f)
+        {
+            sound.clip = (Why);
+        }
+        else if (rand < 7f)
+        {
+            sound.clip = (Yo);
+        }
+        else if (rand < 8f)
+        {
+            sound.clip = Kidding;
+        }
+        sound.Play();
+
+        yield return new WaitForSeconds(sound.clip.length);
+        sound.volume = 1f;
+        if (rand < 2f)
+        {
+            sound.clip = forTheBooks;
+        }
+        else if (rand < 4f)
+        {
+            sound.clip = bullseye;
+        }
+        else if (rand < 6f)
+        {
+            sound.clip = killConfirmed;
+        }
+        else if (rand < 8f)
+        {
+            sound.clip = oneDown;
+        }
+        sound.Play();
+    }
 }

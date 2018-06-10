@@ -15,6 +15,11 @@ public class SoundControl : MonoBehaviour {
     public AudioSource DeathBGM;
     public AudioSource CutSceneBGM;
 
+    //VictorySound
+    public AudioClip GodsWork;
+    public AudioClip MissionAccomplished;
+    public AudioClip ShowEm;
+
     private void Awake()
     {
         if(control == null)

@@ -55,6 +55,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float volHighRange = 1.0f;
     private bool wasDive;
     private GameObject BombCam;
+    private GameObject EndMenu;
     void Start()
     {
         rand = new Random();
@@ -73,6 +74,7 @@ public class PlayerBehaviour : MonoBehaviour
         lineRenderer.useWorldSpace = true;
         source = GetComponent<AudioSource>();
         BombCam = GameManager.GetComponent<GameManagerBehaviour>().BombCamera;
+        EndMenu = GameObject.Find("EndMenu");
     }
 
     void Update()
@@ -201,49 +203,94 @@ public class PlayerBehaviour : MonoBehaviour
             rb.useGravity = true;
             if(BirdDeath)
             {
-                SoundControl.control.DeathBGM.mute = false;
-                SoundControl.control.DeathBGM.Stop();
-                SoundControl.control.DeathBGM.PlayOneShot(SoundControl.control.DeathBGM.clip);
-                SoundControl.control.GameBGM.mute = true;
-                SoundControl.control.MainMenuBGM.mute = true;
-                SoundControl.control.CutSceneBGM.mute = true;
+                if(EndMenu.GetComponent<EndMenuScript>().isVictory)
+                {
+                    SoundControl.control.DeathBGM.mute = false;
+                    SoundControl.control.DeathBGM.Stop();
+                    if (rand < 2f)
+                    {
+                        SoundControl.control.DeathBGM.clip = SoundControl.control.ShowEm;
+                    }
+                    else if (rand < 4f)
+                    {
+                        SoundControl.control.DeathBGM.clip = SoundControl.control.GodsWork;
+                    }
+                    else if(rand < 6f)
+                    {
+                        SoundControl.control.DeathBGM.clip = SoundControl.control.MissionAccomplished;
+                    }
+                    SoundControl.control.DeathBGM.PlayOneShot(SoundControl.control.DeathBGM.clip);
+                    SoundControl.control.GameBGM.mute = true;
+                    SoundControl.control.MainMenuBGM.mute = true;
+                    SoundControl.control.CutSceneBGM.mute = true;
+                }
+                else
+                {
+                    SoundControl.control.DeathBGM.mute = false;
+                    SoundControl.control.DeathBGM.Stop();
+                    SoundControl.control.DeathBGM.PlayOneShot(SoundControl.control.DeathBGM.clip);
+                    SoundControl.control.GameBGM.mute = true;
+                    SoundControl.control.MainMenuBGM.mute = true;
+                    SoundControl.control.CutSceneBGM.mute = true;
+                }
+                
             }
             if(rand < 1f && BirdDeath)
             {
                 source.PlayOneShot(impact);
                 BirdDeath = false;
-                source.PlayOneShot(missionFail);
+                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
+                {
+                    source.PlayOneShot(missionFail);
+                }
             }
             else if(rand < 2f && BirdDeath)
             {
                 source.PlayOneShot(splat);
                 BirdDeath = false;
-                source.PlayOneShot(missionFail);
+                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
+                {
+                    source.PlayOneShot(missionFail);
+                }
             }
             else if(rand < 3f && BirdDeath)
             {
                 source.PlayOneShot(rattle);
                 BirdDeath = false;
-                source.PlayOneShot(missionFail);
+                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
+                {
+                    source.PlayOneShot(missionFail);
+                }
             }
             else if(rand < 4f && BirdDeath)
             {
                 source.PlayOneShot(metal1);
                 BirdDeath = false;
-                source.PlayOneShot(missionFail);
+                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
+                {
+                    source.PlayOneShot(missionFail);
+                }
             }
             else if(rand < 5f && BirdDeath)
             {
                 source.PlayOneShot(metal2);
                 BirdDeath = false;
-                source.PlayOneShot(missionFail);
+                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
+                {
+                    source.PlayOneShot(missionFail);
+                }
             }
             else if(rand < 6f && BirdDeath)
             {
                 source.PlayOneShot(thud);
                 BirdDeath = false;
-                source.PlayOneShot(missionFail);
+                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
+                {
+                    source.PlayOneShot(missionFail);
+                }
             }
+
+           
             return;
 
         }

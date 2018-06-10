@@ -181,6 +181,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splat: {fileID: 8300000, guid: cdfe54e4c619d304ab9e56cdda549be6, type: 3}
   squish: {fileID: 8300000, guid: 19d14a9c3e87f784290f07cb86e7f65e, type: 3}
+  forTheBooks: {fileID: 8300000, guid: f4c6e79138ca3b4408980143a6655d45, type: 3}
+  bullseye: {fileID: 8300000, guid: 70b7121df42023346b17003e3552d2f8, type: 3}
+  killConfirmed: {fileID: 8300000, guid: f2073900b96e20747b73cb834e1cc30b, type: 3}
+  oneDown: {fileID: 8300000, guid: 7118f3105fab35949bff525cebac12e8, type: 3}
 --- !u!198 &198164734749979518
 ParticleSystem:
   m_ObjectHideFlags: 1

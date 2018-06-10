@@ -8,22 +8,29 @@ public class PoopParticleScript : MonoBehaviour {
     private float volHighRange = 1.0f;
     private float lowPitchRange = .75F;
     private float highPitchRange = 1.5F;
+    private float clipLength = 5f;
 
     public AudioClip splat;
     public AudioClip squish;
+    
+
     void Start(){
         source.Stop();
         source.pitch = Random.Range(lowPitchRange, highPitchRange);
         float vol = Random.Range(volLowRange, volHighRange);
-        float rand = Random.Range(0, 2);
-        if (rand < 1f)
+        float rand = Random.Range(0, 4);
+        source.volume = vol;
+        if (rand < 2f)
         {
-            source.PlayOneShot(splat, vol);
+            source.clip = splat;
         }
-        else if (rand < 2f)
+        else if (rand < 4f)
         {
-            source.PlayOneShot(squish, vol);
+            source.clip = squish;
         }
-        Destroy(this.gameObject, 5f);
+        source.Play();
+        Destroy(this.gameObject, clipLength);
 	}
+
+    
 }

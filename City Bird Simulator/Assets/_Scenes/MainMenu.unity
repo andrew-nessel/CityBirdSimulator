@@ -217,6 +217,9 @@ MonoBehaviour:
   MainMenuBGM: {fileID: 499813176}
   DeathBGM: {fileID: 499813177}
   CutSceneBGM: {fileID: 499813173}
+  GodsWork: {fileID: 8300000, guid: ed534182210950b44b96e78f7daeca93, type: 3}
+  MissionAccomplished: {fileID: 8300000, guid: a0dab7c8752550340b6159c1fc466d06, type: 3}
+  ShowEm: {fileID: 8300000, guid: f8ad6bd41e3cd59448a6173399af3a02, type: 3}
 --- !u!82 &499813173
 AudioSource:
   m_ObjectHideFlags: 0
