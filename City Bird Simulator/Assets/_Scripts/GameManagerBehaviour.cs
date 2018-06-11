@@ -27,11 +27,14 @@ public class GameManagerBehaviour : MonoBehaviour {
     public GameObject Goal;
     public GameObject currentPowerUp;
     public GameObject PowerUpUI;
+    public GameObject RadioUI;
 
     public bool isPaused = false;
     public bool isHUD = false;
     public bool bombActive = false;
     public bool isPowerUpWait = false;
+    public bool isRadioWait = false;
+    public int RadioIndex = 0;
 
     public int Targets;
     public int Bombs;
@@ -51,7 +54,9 @@ public class GameManagerBehaviour : MonoBehaviour {
         timerAmount = 0;
         Goal.SetActive(false);
         Screen.lockCursor = true;
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
+        isRadioWait = true;
+        RadioUI.SetActive(true);
     }
 	
 	// Update is called once per frame
@@ -81,14 +86,81 @@ public class GameManagerBehaviour : MonoBehaviour {
         else
         {
 
-            if (isPowerUpWait)
+            if (isRadioWait)
+            {
+                if (RadioIndex == 0)
+                {
+                    RadioUI.GetComponent<RadioUIScript>().firstContact();
+
+                    if (Input.GetKeyUp(KeyCode.Return))
+                    {
+                        RadioIndex += 1;
+                    }
+                }
+                else if (RadioIndex == 1)
+                {
+                    RadioUI.GetComponent<RadioUIScript>().firstContact2();
+                    if (Input.GetKeyUp(KeyCode.Return))
+                    {
+                        RadioIndex += 1;
+                    }
+                }
+                else if (RadioIndex == 2)
+                {
+                    RadioUI.GetComponent<RadioUIScript>().firstContact3();
+                    if (Input.GetKeyUp(KeyCode.Return))
+                    {
+                        RadioIndex += 1;
+                    }
+                }
+                else if (RadioIndex == 3)
+                {
+                    RadioUI.GetComponent<RadioUIScript>().firstContact4();
+                    if (Input.GetKeyUp(KeyCode.Return))
+                    {
+                        RadioIndex += 1;
+                        Time.timeScale = 1f;
+                        isRadioWait = false;
+                        RadioUI.SetActive(false);
+                    }
+                }
+                else if (RadioIndex == 4)
+                {
+                    RadioUI.GetComponent<RadioUIScript>().extraction();
+                    if (Input.GetKeyUp(KeyCode.Return))
+                    {
+                        RadioIndex += 1;
+                    }
+                }
+                else if (RadioIndex == 5)
+                {
+                    RadioUI.GetComponent<RadioUIScript>().extraction1();
+                    if (Input.GetKeyUp(KeyCode.Return))
+                    {
+                        RadioIndex += 1;
+                    }
+                }
+                else if (RadioIndex == 6)
+                {
+                    RadioUI.GetComponent<RadioUIScript>().extraction2();
+                    if (Input.GetKeyUp(KeyCode.Return))
+                    {
+                        RadioIndex += 1;
+                        Time.timeScale = 1f;
+                        isRadioWait = false;
+                        RadioUI.SetActive(false);
+                    }
+                }
+
+            }
+            else if (isPowerUpWait)
             {
 
                 Debug.Log(currentPowerUp.GetComponent<PowerupBehaviour>().FlightAsideText);
 
                 PowerUpUI.GetComponent<PowerUpMenuUI>().updateText(currentPowerUp.GetComponent<PowerupBehaviour>().FlightAsideText, currentPowerUp.GetComponent<PowerupBehaviour>().BombDsideText);
                 PowerUpUI.SetActive(true);
-                
+
                 if (Input.GetKeyUp("a"))
                 {
 
@@ -107,7 +179,7 @@ public class GameManagerBehaviour : MonoBehaviour {
                     PowerUpUI.SetActive(false);
                     Destroy(currentPowerUp);
                 }
-                else if(Input.GetKeyUp("d"))
+                else if (Input.GetKeyUp("d"))
                 {
                     int bombs = currentPowerUp.GetComponent<PowerupBehaviour>().NumberOfBombs;
                     int type = currentPowerUp.GetComponent<PowerupBehaviour>().Bombtype;
@@ -206,7 +278,7 @@ public class GameManagerBehaviour : MonoBehaviour {
 
     public bool CanDropBomb()
     {
-        return ((!bombActive) && (Bombs > 0));
+        return ((!bombActive) && (!isPowerUpWait) && (!isRadioWait) && (Bombs > 0));
     }
 
     public void deactivateBomb()
@@ -239,6 +311,10 @@ public class GameManagerBehaviour : MonoBehaviour {
     {
         if (Targets>=targetsToGoal) {
             Goal.SetActive(true);
+            deactivateBombView();
+            Time.timeScale = 0f;
+            isRadioWait = true;
+            RadioUI.SetActive(true);
         }
     }
 	
