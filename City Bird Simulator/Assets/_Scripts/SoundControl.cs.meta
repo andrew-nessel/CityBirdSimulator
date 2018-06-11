@@ -3,7 +3,19 @@ guid: 8a126743ae1ad1544804609df72efefb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - MusicMixer: {instanceID: 0}
+  - Master: {instanceID: 0}
+  - BGM: {instanceID: 0}
+  - SFX: {instanceID: 0}
+  - GameBGM: {instanceID: 0}
+  - MainMenuBGM: {instanceID: 0}
+  - DeathBGM: {instanceID: 0}
+  - CutSceneBGM: {instanceID: 0}
+  - GodsWork: {fileID: 8300000, guid: ed534182210950b44b96e78f7daeca93, type: 3}
+  - MissionAccomplished: {fileID: 8300000, guid: a0dab7c8752550340b6159c1fc466d06,
+      type: 3}
+  - ShowEm: {fileID: 8300000, guid: f8ad6bd41e3cd59448a6173399af3a02, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

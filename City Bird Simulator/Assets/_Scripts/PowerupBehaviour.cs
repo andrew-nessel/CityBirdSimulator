@@ -6,6 +6,12 @@ public class PowerupBehaviour : MonoBehaviour {
 
     public int Bombtype;
     public int NumberOfBombs;
+    public float extraTurning;
+    public float extraSpeed;
+    public float extraThermalLift;
+
+    public string FlightAsideText;
+    public string BombDsideText;
 
 	// Use this for initialization
 	void Start () {

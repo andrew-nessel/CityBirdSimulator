@@ -16,6 +16,9 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject BigBomb;
     public GameObject GameManager;
 
+    public float extraTurning;
+    public float extraThermalLift;
+
     public Rigidbody rb;
     private Vector3 previousVelocity;
     private float thermalLift;
@@ -66,6 +69,9 @@ public class PlayerBehaviour : MonoBehaviour
         speed = 0.0f;
         wasDive = false;
         thermalLift = 0f;
+
+        extraTurning = 1;
+        extraThermalLift = 1;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.startWidth = .1f;
         lineRenderer.endWidth = .1f;
@@ -203,7 +209,9 @@ public class PlayerBehaviour : MonoBehaviour
             rb.useGravity = true;
             if(BirdDeath)
             {
-                if(EndMenu.GetComponent<EndMenuScript>().isVictory)
+
+                BirdDeath = false;
+                if (winCondition)
                 {
                     SoundControl.control.DeathBGM.mute = false;
                     SoundControl.control.DeathBGM.Stop();
@@ -215,7 +223,7 @@ public class PlayerBehaviour : MonoBehaviour
                     {
                         SoundControl.control.DeathBGM.clip = SoundControl.control.GodsWork;
                     }
-                    else if(rand < 6f)
+                    else
                     {
                         SoundControl.control.DeathBGM.clip = SoundControl.control.MissionAccomplished;
                     }
@@ -232,62 +240,41 @@ public class PlayerBehaviour : MonoBehaviour
                     SoundControl.control.GameBGM.mute = true;
                     SoundControl.control.MainMenuBGM.mute = true;
                     SoundControl.control.CutSceneBGM.mute = true;
+
+
+                    if (rand < 1f)
+                    {
+                        source.PlayOneShot(impact);
+                        source.PlayOneShot(missionFail);
+                    }
+                    else if (rand < 2f)
+                    {
+                        source.PlayOneShot(splat);
+                        source.PlayOneShot(missionFail);
+                    }
+                    else if (rand < 3f)
+                    {
+                        source.PlayOneShot(rattle);
+                        source.PlayOneShot(missionFail);
+                    }
+                    else if (rand < 4f)
+                    {
+                        source.PlayOneShot(metal1);
+                        source.PlayOneShot(missionFail);
+                    }
+                    else if (rand < 5f)
+                    {
+                        source.PlayOneShot(metal2);
+                        source.PlayOneShot(missionFail);
+                    }
+                    else
+                    {
+                        source.PlayOneShot(thud);
+                        source.PlayOneShot(missionFail);
+                    }
+
                 }
                 
-            }
-            if(rand < 1f && BirdDeath)
-            {
-                source.PlayOneShot(impact);
-                BirdDeath = false;
-                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
-                {
-                    source.PlayOneShot(missionFail);
-                }
-            }
-            else if(rand < 2f && BirdDeath)
-            {
-                source.PlayOneShot(splat);
-                BirdDeath = false;
-                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
-                {
-                    source.PlayOneShot(missionFail);
-                }
-            }
-            else if(rand < 3f && BirdDeath)
-            {
-                source.PlayOneShot(rattle);
-                BirdDeath = false;
-                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
-                {
-                    source.PlayOneShot(missionFail);
-                }
-            }
-            else if(rand < 4f && BirdDeath)
-            {
-                source.PlayOneShot(metal1);
-                BirdDeath = false;
-                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
-                {
-                    source.PlayOneShot(missionFail);
-                }
-            }
-            else if(rand < 5f && BirdDeath)
-            {
-                source.PlayOneShot(metal2);
-                BirdDeath = false;
-                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
-                {
-                    source.PlayOneShot(missionFail);
-                }
-            }
-            else if(rand < 6f && BirdDeath)
-            {
-                source.PlayOneShot(thud);
-                BirdDeath = false;
-                if (!EndMenu.GetComponent<EndMenuScript>().isVictory)
-                {
-                    source.PlayOneShot(missionFail);
-                }
             }
 
            
@@ -304,7 +291,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (tilt < 0)
             tilt = 0f;
 
-        Rtilt = Rtilt + horizontal * 1.5f;
+        Rtilt = Rtilt + horizontal * 1.5f * extraTurning;
         if (Rtilt > 360)
             Rtilt = Rtilt - 360f;
         if (Rtilt < -1)
@@ -365,7 +352,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         float velocity = (Mathf.Abs(speed) + 1) * 2;
 
-        lift = lift + thermalLift;
+        lift = lift + (thermalLift * extraThermalLift);
         
 
         transform.eulerAngles = new Vector3(birdTilt, Rtilt, 0f);
@@ -468,8 +455,7 @@ public class PlayerBehaviour : MonoBehaviour
 		if (other.gameObject.tag == "PowerUp")
         {
             Debug.Log("Player got a Burger");
-            GameManagerBehaviour.Instance.activatePowerUp(other.gameObject.GetComponent<PowerupBehaviour>().NumberOfBombs, other.gameObject.GetComponent<PowerupBehaviour>().Bombtype);
-            Destroy(other.gameObject);
+            GameManagerBehaviour.Instance.activatePowerUp(other.gameObject);
         }
     }
 

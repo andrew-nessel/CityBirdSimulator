@@ -25,9 +25,13 @@ public class GameManagerBehaviour : MonoBehaviour {
     public GameObject HUDUI;
     public GameObject BombCamera;
     public GameObject Goal;
+    public GameObject currentPowerUp;
+    public GameObject PowerUpUI;
+
     public bool isPaused = false;
     public bool isHUD = false;
     public bool bombActive = false;
+    public bool isPowerUpWait = false;
 
     public int Targets;
     public int Bombs;
@@ -76,7 +80,55 @@ public class GameManagerBehaviour : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.Escape))
+
+            if (isPowerUpWait)
+            {
+
+                Debug.Log(currentPowerUp.GetComponent<PowerupBehaviour>().FlightAsideText);
+
+                PowerUpUI.GetComponent<PowerUpMenuUI>().updateText(currentPowerUp.GetComponent<PowerupBehaviour>().FlightAsideText, currentPowerUp.GetComponent<PowerupBehaviour>().BombDsideText);
+                PowerUpUI.SetActive(true);
+                
+                if (Input.GetKeyUp("a"))
+                {
+
+                    float extraSpeed = currentPowerUp.GetComponent<PowerupBehaviour>().extraSpeed;
+                    float extraTurning = currentPowerUp.GetComponent<PowerupBehaviour>().extraTurning;
+                    float extraThermalLift = currentPowerUp.GetComponent<PowerupBehaviour>().extraThermalLift;
+
+                    Time.timeScale = 1f;
+                    isPowerUpWait = false;
+
+                    player.GetComponent<PlayerBehaviour>().extraTurning += extraTurning;
+                    player.GetComponent<PlayerBehaviour>().extraThermalLift += extraThermalLift;
+                    player.GetComponent<PlayerBehaviour>().maxspeed += extraSpeed;
+                    player.GetComponent<PlayerBehaviour>().diveMaxSpeed += extraSpeed;
+
+                    PowerUpUI.SetActive(false);
+                    Destroy(currentPowerUp);
+                }
+                else if(Input.GetKeyUp("d"))
+                {
+                    int bombs = currentPowerUp.GetComponent<PowerupBehaviour>().NumberOfBombs;
+                    int type = currentPowerUp.GetComponent<PowerupBehaviour>().Bombtype;
+
+                    Time.timeScale = 1f;
+                    isPowerUpWait = false;
+
+                    if (type == 0)
+                    {
+                        UpdateBombs(Bombs + bombs, type);
+                    }
+                    else
+                    {
+                        UpdateBombs(bombs, type);
+                    }
+
+                    PowerUpUI.SetActive(false);
+                    Destroy(currentPowerUp);
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.Escape))
             {
                 if (isPaused)
                 {
@@ -191,17 +243,11 @@ public class GameManagerBehaviour : MonoBehaviour {
     }
 	
 	//Below = PowerUp activation
-	public void activatePowerUp(int bombs, int type)
+	public void activatePowerUp(GameObject powerUp)
     {
-        if (type == 0)
-        {
-            UpdateBombs(Bombs + bombs, type);
-
-        }
-        else
-        {
-            UpdateBombs(bombs, type);
-        }
+        currentPowerUp = powerUp;
+        Time.timeScale = 0f;
+        isPowerUpWait = true;
     }
     
 }
