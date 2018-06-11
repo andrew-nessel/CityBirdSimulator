@@ -19,6 +19,7 @@ public class EndMenuScript : MonoBehaviour {
     public GameObject Medal1Lost;
     public GameObject Medal2Lost;
     public GameObject Medal3Lost;
+    public GameObject endMenuScoreUI;
 
     // Update is called once per frame
     void Update()
@@ -28,12 +29,14 @@ public class EndMenuScript : MonoBehaviour {
 
     public void Victory()
     {
+        endMenuScoreUI.SetActive(true);
         endMenuText.text = "Mission Accomplished";
         endMenuUI.SetActive(true);
     }
 
     public void Defeat()
     {
+        endMenuScoreUI.SetActive(false);
         endMenuText.text = "Mission Failed";
         endMenuUI.SetActive(true);
         endMenuScoreText.text = "";
@@ -43,6 +46,7 @@ public class EndMenuScript : MonoBehaviour {
 
     public void Restart()
     {
+        endMenuScoreUI.SetActive(false);
         endMenuUI.SetActive(false);
         SceneManager.LoadScene("Demo_Level");
     }
@@ -50,6 +54,7 @@ public class EndMenuScript : MonoBehaviour {
 
     public void Menu()
     {
+        endMenuScoreUI.SetActive(false);
         endMenuUI.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
@@ -61,6 +66,7 @@ public class EndMenuScript : MonoBehaviour {
 
     public void UpdateScore(int score, int medals)
     {
+        endMenuScoreUI.SetActive(true);
         endMenuScore.text = score.ToString();
         if(medals == 3)
         {

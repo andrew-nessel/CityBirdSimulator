@@ -13,6 +13,7 @@ public class AudjustMainMenu : MonoBehaviour {
         SoundControl.control.MainMenuBGM.PlayOneShot(SoundControl.control.MainMenuBGM.clip);
         SoundControl.control.CutSceneBGM.mute = true;
         SoundControl.control.DeathBGM.mute = true;
+        SoundControl.control.VictoryBGM.mute = true;
     }
 
     // Update is called once per frame

@@ -213,25 +213,26 @@ public class PlayerBehaviour : MonoBehaviour
                 BirdDeath = false;
                 if (winCondition)
                 {
-                    SoundControl.control.VictoryBGM.mute = false;
-                    SoundControl.control.DeathBGM.mute = false;
-                    SoundControl.control.DeathBGM.Stop();
-                    if (rand < 2f)
-                    {
-                        SoundControl.control.DeathBGM.clip = SoundControl.control.ShowEm;
-                    }
-                    else if (rand < 4f)
-                    {
-                        SoundControl.control.DeathBGM.clip = SoundControl.control.GodsWork;
-                    }
-                    else
-                    {
-                        SoundControl.control.DeathBGM.clip = SoundControl.control.MissionAccomplished;
-                    }
-                    SoundControl.control.DeathBGM.PlayOneShot(SoundControl.control.DeathBGM.clip);
                     SoundControl.control.GameBGM.mute = true;
                     SoundControl.control.MainMenuBGM.mute = true;
                     SoundControl.control.CutSceneBGM.mute = true;
+                    SoundControl.control.DeathBGM.mute = true;
+
+                    SoundControl.control.VictoryBGM.mute = false;
+                    SoundControl.control.GameBGM.Stop();
+                    SoundControl.control.DeathBGM.Stop();
+                    if (rand < 2f)
+                    {
+                        source.PlayOneShot(SoundControl.control.ShowEm);
+                    }
+                    else if (rand < 4f)
+                    {
+                        source.PlayOneShot(SoundControl.control.GodsWork);
+                    }
+                    else
+                    {
+                        source.PlayOneShot(SoundControl.control.MissionAccomplished);
+                    }
                 }
                 else
                 {
