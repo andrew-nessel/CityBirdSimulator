@@ -15,6 +15,9 @@ public class Target_Behavior_Script : MonoBehaviour {
     public AudioClip Kidding;
     private AudioSource sound;
 
+    public Vector3 hitPosition;
+    public Vector3 hitRotation;
+
     //Target Hit Sounds
     public AudioClip forTheBooks;
     public AudioClip bullseye;
@@ -31,6 +34,9 @@ public class Target_Behavior_Script : MonoBehaviour {
 			this.m_Material.color = Color.white;
             float rand = Random.Range(0, 8);
             StartCoroutine(playEngineSound());
+
+            transform.eulerAngles = hitRotation;
+            transform.localPosition = hitPosition;
 
         }
 	}

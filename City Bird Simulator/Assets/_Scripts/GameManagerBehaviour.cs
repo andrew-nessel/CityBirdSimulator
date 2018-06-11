@@ -29,6 +29,7 @@ public class GameManagerBehaviour : MonoBehaviour {
     public GameObject PowerUpUI;
     public GameObject RadioUI;
 
+    public int ScoreFor3Medals;
     public bool isPaused = false;
     public bool isHUD = false;
     public bool bombActive = false;
@@ -72,7 +73,8 @@ public class GameManagerBehaviour : MonoBehaviour {
             {
                 timeScore = 0;
             }
-            EndMenu.GetComponent<EndMenuScript>().UpdateScore(timeScore + (Targets*10));
+            int score = Mathf.FloorToInt(timeScore*1.5f) + (Targets * 40);
+            EndMenu.GetComponent<EndMenuScript>().UpdateScore(score, Mathf.FloorToInt(score/(ScoreFor3Medals/3)));
             HUDUI.SetActive(false);
         }
         else if (player.GetComponent<PlayerBehaviour>().collide)
@@ -309,12 +311,15 @@ public class GameManagerBehaviour : MonoBehaviour {
 
     public void checkForGoal()
     {
-        if (Targets>=targetsToGoal) {
-            Goal.SetActive(true);
+        if (Targets==targetsToGoal) {
             deactivateBombView();
             Time.timeScale = 0f;
             isRadioWait = true;
             RadioUI.SetActive(true);
+        }
+        if(Targets >= targetsToGoal)
+        {
+            Goal.SetActive(true);
         }
     }
 	

@@ -12,6 +12,7 @@ public class SoundControl : MonoBehaviour {
     public AudioMixerGroup SFX;
     public AudioSource GameBGM;
     public AudioSource MainMenuBGM;
+    public AudioSource VictoryBGM;
     public AudioSource DeathBGM;
     public AudioSource CutSceneBGM;
 

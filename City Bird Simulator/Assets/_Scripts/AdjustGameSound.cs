@@ -16,6 +16,13 @@ public class AdjustGameSound : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-		
+
+        if (!SoundControl.control.GameBGM.mute)
+        {
+            if (!SoundControl.control.GameBGM.isPlaying)
+            {
+                SoundControl.control.GameBGM.PlayOneShot(SoundControl.control.GameBGM.clip);
+            }
+        }
 	}
 }

@@ -213,6 +213,7 @@ public class PlayerBehaviour : MonoBehaviour
                 BirdDeath = false;
                 if (winCondition)
                 {
+                    SoundControl.control.VictoryBGM.mute = false;
                     SoundControl.control.DeathBGM.mute = false;
                     SoundControl.control.DeathBGM.Stop();
                     if (rand < 2f)
